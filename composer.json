@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MartKuper\\OnePageCRM\\": "/martkuper/onepagecrm-php/src"
+            "MartKuper\\OnePageCRM\\": "src"
         }
     }
 }
