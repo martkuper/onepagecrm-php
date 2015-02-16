@@ -62,7 +62,7 @@ class Config
 	 * @param String $email    Your OnePageCRM email
 	 * @param String $password Your OnePageCRM password
 	 */
-	public function __construct($baseUrl = null, $email, $password) 
+	public function __construct($email, $password, $baseUrl = null) 
 	{
 		if(!$baseUrl) {
 			$this->setBaseUrl('https://app.onepagecrm.com/api/v3/');	
