@@ -64,13 +64,9 @@ class OnePageCRM
 	 * @param  array   $body    The data to send
 	 * @return boolean $partial Send a partial request
 	 */
-	public function post($url , $body, $partial = true)
+	public function post($url , $body)
 	{
 		$data['json'] = $body;
-		
-		if($partial || (array_key_exists('partial', $body) && $body['partial'] != 1 && $partial)) {
-			$data['json']['partial'] = 1;
-		}
 		
 		$client = $this->getGuzzleClient();
 		$request = $client->createRequest('POST', $url, $data);
