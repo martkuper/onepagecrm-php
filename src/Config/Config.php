@@ -14,36 +14,42 @@ class Config
 {
 	/**
 	 * API base URL
-	 * @var String
+	 * @var string
 	 */
 	private $baseUrl;
 
 	/**
 	 * OnePageCRM email
-	 * @var String
+	 * @var string
 	 */
 	private $email;
 
 	/**
 	 * OnePageCRM password
-	 * @var String
+	 * @var string
 	 */
 	private $password;
 
 	/**
 	 * OnePageCRM userId
-	 * @var String
+	 * @var string
 	 */
 	private $userId;
+
+	/**
+	 * OnePageCRM authentication key
+	 * @var string
+	 */
+	private $authKey;
 
 	/**
 	 * Config class constructor
 	 *
 	 * TODO: Improve documentation
 	 * 
-	 * @param String $baseUrl  The base url to use. Set to null to use the default value
-	 * @param String $email    Your OnePageCRM email
-	 * @param String $password Your OnePageCRM password
+	 * @param string $baseUrl  The base url to use. Set to null to use the default value
+	 * @param string $email    Your OnePageCRM email
+	 * @param string $password Your OnePageCRM password
 	 */
 	public function __construct($email, $password, $baseUrl = null) 
 	{
@@ -57,7 +63,7 @@ class Config
 
 	/**
 	 * Get the base url
-	 * @return String Base url
+	 * @return string Base url
 	 */
 	public function getBaseUrl()
 	{
@@ -66,7 +72,7 @@ class Config
 
 	/**
 	 * Get the user's email
-	 * @return String The user's email
+	 * @return string The user's email
 	 */
 	public function getEmail()
 	{
@@ -75,7 +81,7 @@ class Config
 
 	/**
 	 * Get the user's password
-	 * @return String The user's password
+	 * @return string The user's password
 	 */
 	public function getPassword()
 	{
@@ -84,7 +90,7 @@ class Config
 
 	/**
 	 * Get the userId
-	 * @return String The userId
+	 * @return string The userId
 	 */
 	public function getUserId()
 	{
@@ -92,8 +98,17 @@ class Config
 	}
 
 	/**
+	 * Get the authKey
+	 * @return string The authKey
+	 */
+	public function getAuthKey()
+	{
+		return $this->authKey;
+	}
+
+	/**
 	 * Set the base url
-	 * @param String $baseUrl The base url
+	 * @param string $baseUrl The base url
 	 */
 	public function setBaseUrl($baseUrl)
 	{
@@ -102,7 +117,7 @@ class Config
 
 	/**
 	 * Set the user's email
-	 * @param String $email The user's email
+	 * @param string $email The user's email
 	 */
 	public function setEmail($email)
 	{
@@ -111,7 +126,7 @@ class Config
 
 	/**
 	 * Set the user's password
-	 * @param String $password The user's password
+	 * @param string $password The user's password
 	 */
 	public function setPassword($password)
 	{
@@ -125,5 +140,14 @@ class Config
 	public function setUserId($userId)
 	{
 		$this->userId = $userId;
+	}
+
+	/**
+	 * Set the authKey
+	 * @param string $authKey The authKey
+	 */
+	public function setAuthKey($authKey)
+	{
+		$this->authKey = $authKey;
 	}
 }
