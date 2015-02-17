@@ -4,11 +4,9 @@ namespace MartKuper\OnePageCRM\Config;
 /**
  * Configuration class
  *
- * This class contains all
- *
  * @package onepagecrm-php
  * @author Mart Kuper
- * @version 0.0.1
+ * @version 0.2.0
  */
 class Config
 {

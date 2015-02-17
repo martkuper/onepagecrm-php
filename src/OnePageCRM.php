@@ -9,10 +9,16 @@ use GuzzleHttp\Client;
  *
  * @package onepagecrm-php
  * @author Mart Kuper
- * @version 0.0.1
+ * @version 0.2.0
  */
-class OnePageCRM
+abstract class OnePageCRM
 {
+
+	/**
+	 * [$url description]
+	 * @var [type]
+	 */
+	private $url;
 
 	/**
  	* Guzzle client object
@@ -45,6 +51,9 @@ class OnePageCRM
 		$this->guzzleClient = $client;
 		$this->config       = $config;
 
+		$className = explode("\\", strtolower(get_class($this)));
+		$this->url = array_pop($className) . '.json';
+
 		if(!$config->getAuthKey() || !$config->getUserId()) {
 			$this->login();	
 		}		
@@ -64,23 +73,32 @@ class OnePageCRM
 	 * 
 	 * For example: post($url, ['login' => 'e@mail.com', 'password' => 'pass'])
 	 * 
-	 * @param  string   $url     The url to append to the base url
-	 * @param  array    $body    The data to send
-	 * @return Response          GuzzleHttp\Response object
+	 * @param  string|null   $url     The url to append to the base url
+	 * @param  array|null    $body    The data to send
+	 * @return Response         	  GuzzleHttp\Response object
 	 */
-	public function post($url , $body)
+	public function post($url = null, $body = null)
 	{
-		$data['json'] = $body;
+		if(!$url) {
+			$url = $this->url;
+		}
 
+		if($body) {
+			$data['json'] = $body;
+		} else {
+			$data['json'] = $this->toArray();
+		}
+		
 		// TODO: Explain
 		if(!isset($body['login']) && !isset($body['password'])) {
-			$headers = $this->authenticate($body, $url);
+			$headers = $this->authenticate($data['json'], $url);
 			$headers['Content-Type'] = 'application/json';
 			$data['headers'] = $headers;
 		}
 
 		$client = $this->guzzleClient;
 		$request = $client->createRequest('POST', $url, $data);
+		$request->getBody()->getContents();
 		$response = $client->send($request);
 		
 		return $response;
@@ -91,7 +109,7 @@ class OnePageCRM
 	 * [login description]
 	 * @return [type] [description]
 	 */
-	public function login()
+	protected function login()
 	{
 		$config = $this->config;
 
@@ -117,7 +135,7 @@ class OnePageCRM
 	 * 
 	 * @return array Array of HTTP headers
 	 */
-	public function authenticate($data, $url, $http_method = 'POST')
+	protected function authenticate($data, $url, $http_method = 'POST')
 	{
 		$config = $this->config;
 		$uid = $config->getUserId();
@@ -145,4 +163,6 @@ class OnePageCRM
 
 		return $request_headers;
 	}
+
+	abstract protected function toArray();
 }
