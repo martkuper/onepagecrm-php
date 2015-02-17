@@ -15,8 +15,8 @@ abstract class OnePageCRM
 {
 
 	/**
-	 * [$url description]
-	 * @var [type]
+	 * Sub URL to post to
+	 * @var string
 	 */
 	private $url;
 
@@ -24,7 +24,7 @@ abstract class OnePageCRM
  	* Guzzle client object
  	* @var GuzzleHttp\Client
  	*/
-	private $guzzleClient;
+	private $guzzle_client;
 
 	/**
 	 * Configuration object
@@ -48,11 +48,11 @@ abstract class OnePageCRM
 			]);
 		}	
 
-		$this->guzzleClient = $client;
+		$this->guzzle_client = $client;
 		$this->config       = $config;
 
-		$className = explode("\\", strtolower(get_class($this)));
-		$this->url = array_pop($className) . '.json';
+		$class_name = explode("\\", strtolower(get_class($this)));
+		$this->url = array_pop($class_name) . '.json';
 
 		if(!$config->getAuthKey() || !$config->getUserId()) {
 			$this->login();	
@@ -96,7 +96,7 @@ abstract class OnePageCRM
 			$data['headers'] = $headers;
 		}
 
-		$client = $this->guzzleClient;
+		$client = $this->guzzle_client;
 		$request = $client->createRequest('POST', $url, $data);
 		$request->getBody()->getContents();
 		$response = $client->send($request);

@@ -14,7 +14,7 @@ class Config
 	 * API base URL
 	 * @var string
 	 */
-	private $baseUrl = 'https://app.onepagecrm.com/api/v3/';
+	private $base_url = 'https://app.onepagecrm.com/api/v3/';
 
 	/**
 	 * OnePageCRM email
@@ -29,23 +29,22 @@ class Config
 	private $password;
 
 	/**
-	 * OnePageCRM userId
+	 * OnePageCRM user_id
 	 * @var string
 	 */
-	private $userId;
+	private $user_id;
 
 	/**
 	 * OnePageCRM authentication key
 	 * @var string
 	 */
-	private $authKey;
+	private $auth_key;
 
 	/**
 	 * Config class constructor
 	 *
 	 * TODO: Improve documentation
 	 * 
-	 * @param string $baseUrl  The base url to use. Set to null to use the default value
 	 * @param string $email    Your OnePageCRM email
 	 * @param string $password Your OnePageCRM password
 	 */
@@ -74,30 +73,30 @@ class Config
 	}
 
 	/**
-	 * Get the userId
-	 * @return string The userId
+	 * Get the user_id
+	 * @return string The user_id
 	 */
 	public function getUserId()
 	{
-		return $this->userId;
+		return $this->user_id;
 	}
 
 	/**
-	 * Get the authKey
-	 * @return string The authKey
+	 * Get the auth_key
+	 * @return string The auth_key
 	 */
 	public function getAuthKey()
 	{
-		return $this->authKey;
+		return $this->auth_key;
 	}
 
 	/**
-	 * Get the baseUrl
+	 * Get the base_url
 	 * @return string The base url
 	 */
 	public function getBaseUrl()
 	{
-		return $this->baseUrl;
+		return $this->base_url;
 	}
 
 	/**
@@ -119,20 +118,20 @@ class Config
 	}
 
 	/**
-	 * Set the userId
-	 * @param string $userId The userId
+	 * Set the user_id
+	 * @param string $user_id The user_id
 	 */
-	public function setUserId($userId)
+	public function setUserId($user_id)
 	{
-		$this->userId = $userId;
+		$this->user_id = $user_id;
 	}
 
 	/**
-	 * Set the authKey
-	 * @param string $authKey The authKey
+	 * Set the auth_key
+	 * @param string $auth_key The auth_key
 	 */
-	public function setAuthKey($authKey)
+	public function setAuthKey($auth_key)
 	{
-		$this->authKey = $authKey;
+		$this->auth_key = $auth_key;
 	}
 }

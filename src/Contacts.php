@@ -18,31 +18,31 @@ class Contacts extends OnePageCRM {
 	 * Contact's first name
 	 * @var string
 	 */
-	private $firstName;
+	private $first_name;
 
 	/**
 	 * Contact's last name
 	 * @var string
 	 */
-	private $lastName;
+	private $last_name;
 
 	/**
 	 * Contact's company name
 	 * @var string
 	 */
-	private $companyName;
+	private $company_name;
 
 	/**
 	 * Contacts job title
 	 * @var string
 	 */
-	private $jobTitle;
+	private $job_title;
 
 	/**
 	 * Contact's status id
 	 * @var string
 	 */
-	private $statusId;
+	private $status_id;
 
 	/**
 	 * Contact's status
@@ -66,13 +66,13 @@ class Contacts extends OnePageCRM {
 	 * Contact's owner id
 	 * @var string
 	 */
-	private $ownerId;
+	private $owner_id;
 
 	/**
 	 * list of addresses
 	 * @var array
 	 */
-	private $addressList = [];
+	private $address_list = [];
 
 	/**
 	 * Contact's description
@@ -84,7 +84,7 @@ class Contacts extends OnePageCRM {
 	 * Contact's lead source id
 	 * @var string
 	 */
-	private $leadSourceId;
+	private $lead_source_id;
 
 	/**
 	 * Contact's phones
@@ -108,7 +108,7 @@ class Contacts extends OnePageCRM {
 	 * Contact's custom fields
 	 * @var array
 	 */
-	private $customFields = [];
+	private $custom_fields = [];
 
 	/**
 	 * Initializes parent configuration
@@ -127,22 +127,22 @@ class Contacts extends OnePageCRM {
 	public function toArray()
 	{
 		return [
-			'first_name' 	=> $this->firstName,
-			'last_name' 	=> $this->lastName,
-			'company_name' 	=> $this->companyName,
-			'job_title' 	=> $this->jobTitle,
-			'status_id' 	=> $this->statusId,
+			'first_name' 	=> $this->first_name,
+			'last_name' 	=> $this->last_name,
+			'company_name' 	=> $this->company_name,
+			'job_title' 	=> $this->job_title,
+			'status_id' 	=> $this->status_id,
 			'status' 		=> $this->status,
 			'tags' 			=> $this->tags,
 			'starred' 		=> $this->starred,
-			'owner_id' 		=> $this->ownerId,
-			'address_list' 	=> $this->addressList,
+			'owner_id' 		=> $this->owner_id,
+			'address_list' 	=> $this->address_list,
 			'background' 	=> $this->background,
-			'leadSource_id' => $this->leadSourceId,
+			'leadSource_id' => $this->lead_source_id,
 			'phones' 		=> $this->phones,
 			'emails' 		=> $this->emails,
 			'urls' 			=> $this->urls,
-			'custom_fields' => $this->customFields
+			'custom_fields' => $this->custom_fields
 		];
 	}
 
@@ -157,27 +157,27 @@ class Contacts extends OnePageCRM {
 
 	public function getFirstName()
 	{
-		return $this->firstName;
+		return $this->first_name;
 	}
 
 	public function getLastName()
 	{
-		return $this->lastName;
+		return $this->last_name;
 	}
 
 	public function getCompanyName()
 	{
-		return $this->companyName;
+		return $this->company_name;
 	}
 
 	public function getJobTitle()
 	{
-		return $this->jobTitle;
+		return $this->job_title;
 	}
 
 	public function getStatusId()
 	{
-		return $this->statusId;
+		return $this->status_id;
 	}
 
 	public function getStatus()
@@ -197,12 +197,12 @@ class Contacts extends OnePageCRM {
 
 	public function getOwnerId()
 	{
-		return $this->ownerId;
+		return $this->owner_id;
 	}
 
 	public function getAddressList()
 	{
-		return $this->addressList;
+		return $this->address_list;
 	}
 
 	public function getBackground()
@@ -212,7 +212,7 @@ class Contacts extends OnePageCRM {
 
 	public function getLeadSourceId()
 	{
-		return $this->leadSourceId;
+		return $this->lead_source_id;
 	}
 
 	public function getPhones()
@@ -232,32 +232,32 @@ class Contacts extends OnePageCRM {
 
 	public function getCustomFields()
 	{
-		return $this->customFields;
+		return $this->custom_fields;
 	}
 
-	public function setFirstName(string $firstName)
+	public function setFirstName(string $first_name)
 	{
-		$this->firstName = $firstName;
+		$this->first_name = $first_name;
 	}
 
-	public function setLastName(string $lastName)
+	public function setLastName(string $last_name)
 	{
-		$this->lastName = $lastName;
+		$this->last_name = $last_name;
 	}
 
-	public function setCompanyName(string $companyName)
+	public function setCompanyName(string $company_name)
 	{
-		$this->companyName = $companyName;
+		$this->company_name = $company_name;
 	}
 
-	public function setJobTitle(string $jobTitle)
+	public function setJobTitle(string $job_title)
 	{
-		$this->jobTitle = $jobTitle;
+		$this->job_title = $job_title;
 	}
 
-	public function setStatusId(string $statusId)
+	public function setStatusId(string $status_id)
 	{
-		$this->statusId = $statusId;
+		$this->status_id = $status_id;
 	}
 
 	public function setStatus(string $status)
@@ -275,14 +275,14 @@ class Contacts extends OnePageCRM {
 		$this->starred = $starred;
 	}
 
-	public function setOwnerId(string $ownerId)
+	public function setOwnerId(string $owner_id)
 	{
-		$this->ownerId = $ownerId;
+		$this->owner_id = $owner_id;
 	}
 
-	public function setAddressList(array $addressList)
+	public function setAddressList(array $address_list)
 	{
-		$this->addressList = $addressList;
+		$this->address_list = $address_list;
 	}
 
 
@@ -291,9 +291,9 @@ class Contacts extends OnePageCRM {
 		$this->background = $background;
 	}
 
-	public function setLeadSourceId(string $leadSourceId)
+	public function setLeadSourceId(string $lead_source_id)
 	{
-		$this->leadSourceId = $leadSourceId;
+		$this->lead_source_id = $lead_source_id;
 	}
 
 	public function setPhones(array $phones)
@@ -311,8 +311,8 @@ class Contacts extends OnePageCRM {
 		$this->urls = $urls;
 	}
 
-	public function setCustomFields(array $customFields)
+	public function setCustomFields(array $custom_fields)
 	{
-		$this->customFields = $customFields;
+		$this->custom_fields = $custom_fields;
 	}
 }
