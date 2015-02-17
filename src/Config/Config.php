@@ -16,7 +16,7 @@ class Config
 	 * API base URL
 	 * @var string
 	 */
-	private $baseUrl;
+	private $baseUrl = 'https://app.onepagecrm.com/api/v3/';
 
 	/**
 	 * OnePageCRM email
@@ -51,23 +51,10 @@ class Config
 	 * @param string $email    Your OnePageCRM email
 	 * @param string $password Your OnePageCRM password
 	 */
-	public function __construct($email, $password, $baseUrl = null) 
+	public function __construct($email, $password) 
 	{
-		if(!$baseUrl) {
-			$this->setBaseUrl('https://app.onepagecrm.com/api/v3/');	
-		}
-		
 		$this->setEmail($email);
 		$this->setPassword($password);
-	}
-
-	/**
-	 * Get the base url
-	 * @return string Base url
-	 */
-	public function getBaseUrl()
-	{
-		return $this->baseUrl;
 	}
 
 	/**
@@ -107,12 +94,12 @@ class Config
 	}
 
 	/**
-	 * Set the base url
-	 * @param string $baseUrl The base url
+	 * Get the baseUrl
+	 * @return string The base url
 	 */
-	public function setBaseUrl($baseUrl)
+	public function getBaseUrl()
 	{
-		$this->baseUrl = $baseUrl;
+		return $this->baseUrl;
 	}
 
 	/**
