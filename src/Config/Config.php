@@ -43,7 +43,7 @@ class Config
 	/**
 	 * Config class constructor
 	 *
-	 * TODO: Improve documentation
+	 * Sets class variables
 	 * 
 	 * @param string $email    Your OnePageCRM email
 	 * @param string $password Your OnePageCRM password

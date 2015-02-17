@@ -35,21 +35,19 @@ abstract class OnePageCRM
 	/**
 	 * OnePageCRM class constructor
 	 *
-	 * TODO: Improve documentation
+	 * Sets class variables and logs in to the OnePageCRM API
 	 * 
 	 * @param Client|null $client GuzzleHttp/Client object
 	 * @param Config      $config Config object
 	 */
-	public function __construct(Config $config, Client $client = null)
+	public function __construct(Config $config)
 	{
-		if(!$client) {
-			$client = new Client([
-				'base_url'	=>	$config->getBaseUrl()
-			]);
-		}	
-
+		$client = new Client([
+			'base_url'	=>	$config->getBaseUrl()
+		]);
+	
 		$this->guzzle_client = $client;
-		$this->config       = $config;
+		$this->config        = $config;
 
 		$class_name = explode("\\", strtolower(get_class($this)));
 		$this->url = array_pop($class_name) . '.json';
@@ -105,9 +103,9 @@ abstract class OnePageCRM
 	}
 
 	/**
-	 * TODO: Update documentation
-	 * [login description]
-	 * @return [type] [description]
+	 * Logs in to the OnePageCRM API
+	 * 
+	 * @return Response GuzzleHttp\Response object
 	 */
 	protected function login()
 	{
@@ -129,9 +127,8 @@ abstract class OnePageCRM
 	}
 
 	/**
-	 * Generate OnePageCRM authentication keys
-	 * 
-	 * TODO: update documentation
+	 * Generate authentication keys
+	 * in order to sign messages to the OnePageCRM API
 	 * 
 	 * @return array Array of HTTP headers
 	 */
@@ -164,5 +161,10 @@ abstract class OnePageCRM
 		return $request_headers;
 	}
 
+	/**
+	 * Abstract function to convert variables to an array
+	 * 
+	 * @return array Array of class variables
+	 */
 	abstract protected function toArray();
 }

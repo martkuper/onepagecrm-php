@@ -15,6 +15,12 @@ use MartKuper\OnePageCRM\Config\Config;
 class Contacts extends OnePageCRM {
 
 	/**
+	 * Contact's type
+	 * @var string
+	 */
+	private $type;
+
+	/**
 	 * Contact's first name
 	 * @var string
 	 */
@@ -124,28 +130,49 @@ class Contacts extends OnePageCRM {
 		$this->setClassVariables($data);
 	}	
 
+	/**
+	 * Implementation of the OnePageCRM class abstract method
+	 *
+	 * Converts class variables to an array
+	 * 
+	 * @return array Array of class variables
+	 */
 	public function toArray()
 	{
-		return [
-			'first_name' 	=> $this->first_name,
-			'last_name' 	=> $this->last_name,
-			'company_name' 	=> $this->company_name,
-			'job_title' 	=> $this->job_title,
-			'status_id' 	=> $this->status_id,
-			'status' 		=> $this->status,
-			'tags' 			=> $this->tags,
-			'starred' 		=> $this->starred,
-			'owner_id' 		=> $this->owner_id,
-			'address_list' 	=> $this->address_list,
-			'background' 	=> $this->background,
-			'leadSource_id' => $this->lead_source_id,
-			'phones' 		=> $this->phones,
-			'emails' 		=> $this->emails,
-			'urls' 			=> $this->urls,
-			'custom_fields' => $this->custom_fields
+		$array = [
+			'type',
+			'first_name',
+			'last_name',
+			'company_name',
+			'job_title',
+			'status_id',
+			'status',
+			'tags',
+			'starred',
+			'owner_id',
+			'address_list',
+			'background',
+			'leadSource_id',
+			'phones',
+			'emails',
+			'urls',
+			'custom_fields'
 		];
+
+		foreach ($array as $key) {
+			if(!empty($this->$key)) {
+				$return[$key] = $this->$key;
+			}
+		}
+
+		return $return;
 	}
 
+	/**
+	 * Sets class variables according to the supplied array
+	 * 
+	 * @param array $data Array containing class variables
+	 */
 	private function setClassVariables(array $data)
 	{
 		foreach ($data as $key => $value) {
@@ -154,6 +181,11 @@ class Contacts extends OnePageCRM {
 			}
 		}		
 	}	
+
+	public function getType()
+	{
+		return $this->type;
+	}
 
 	public function getFirstName()
 	{
@@ -233,6 +265,11 @@ class Contacts extends OnePageCRM {
 	public function getCustomFields()
 	{
 		return $this->custom_fields;
+	}
+
+	public function setType(string $type)
+	{
+		$this->type = $type;
 	}
 
 	public function setFirstName(string $first_name)
