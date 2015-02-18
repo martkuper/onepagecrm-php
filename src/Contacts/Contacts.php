@@ -1,5 +1,5 @@
 <?php
-namespace MartKuper\OnePageCRM;
+namespace MartKuper\OnePageCRM\Contacts;
 
 use MartKuper\OnePageCRM\Config\Config;
 
