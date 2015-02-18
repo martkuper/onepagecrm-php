@@ -96,7 +96,6 @@ abstract class OnePageCRM
 
 		$client = $this->guzzle_client;
 		$request = $client->createRequest('POST', $url, $data);
-		$request->getBody()->getContents();
 		$response = $client->send($request);
 		
 		return $response;

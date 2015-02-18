@@ -156,8 +156,11 @@ class Contacts extends OnePageCRM {
 			'phones',
 			'emails',
 			'urls',
-			'custom_fields'
+			'custom_fields',
+			'partial'
 		];
+
+		$return = [];
 
 		foreach ($array as $key) {
 			if(!empty($this->$key)) {
