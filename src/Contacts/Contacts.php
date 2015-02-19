@@ -119,6 +119,12 @@ class Contacts extends OnePageCRM {
 	private $custom_fields = [];
 
 	/**
+	 * Wheather the request is partial or not
+	 * @var integer
+	 */
+	private $partial;
+
+	/**
 	 * Initializes parent configuration
 	 *
 	 * TODO: Complete documentation
@@ -179,6 +185,9 @@ class Contacts extends OnePageCRM {
 				}
 				
 			}
+		}
+		if(empty($this->last_name)) {
+			$return['partial'] = 1;
 		}
 
 		return $return;
@@ -291,6 +300,11 @@ class Contacts extends OnePageCRM {
 		return $this->custom_fields;
 	}
 
+	public function getPartial()
+	{
+		return $this->partial;
+	}
+
 	public function setType($type)
 	{
 		$this->type = $type;
@@ -375,5 +389,10 @@ class Contacts extends OnePageCRM {
 	public function addContactsCustomFields($custom_fields)
 	{
 		$this->custom_fields[] = $custom_fields;
+	}
+
+	public function setPartial($partial)
+	{
+		$this->partial = $partial;
 	}
 }
