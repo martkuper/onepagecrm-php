@@ -1,7 +1,9 @@
 <?php
 namespace MartKuper\OnePageCRM\Contacts;
 
+use MartKuper\OnePageCRM\OnePageCRM;
 use MartKuper\OnePageCRM\Config\Config;
+use MartKuper\OnePageCRM\Misc\Misc as Misc;
 
 /**
  * Contacts class
@@ -124,10 +126,12 @@ class Contacts extends OnePageCRM {
 	 * @param Config $config Config object
 	 * @param array  $data   Contact data
 	 */
-	public function __construct(Config $config, array $data)
+	public function __construct(Config $config, array $data = null) 
 	{
 		parent::__construct($config);
-		$this->setClassVariables($data);
+		if($data) {
+			$this->fromArray($data); 
+		}
 	}	
 
 	/**
@@ -176,10 +180,18 @@ class Contacts extends OnePageCRM {
 	 * 
 	 * @param array $data Array containing class variables
 	 */
-	private function setClassVariables(array $data)
+	private function fromArray(array $data)
 	{
 		foreach ($data as $key => $value) {
-			if(isset($data[$key])) {
+			if(is_array($data[$key])) {
+				$object_str = get_class($this) . Misc::snakeCaseToCamelCase($key, true);
+
+				foreach ($value as $key2 => $value2) {
+					$object = new $object_str($value2);
+					array_push($this->$key, $object);
+				}
+				
+			} else if(isset($data[$key])) {
 				$this->$key = $data[$key];
 			}
 		}		
