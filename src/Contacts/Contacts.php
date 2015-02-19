@@ -4,7 +4,7 @@ namespace MartKuper\OnePageCRM\Contacts;
 use MartKuper\OnePageCRM\OnePageCRM;
 use MartKuper\OnePageCRM\Config\Config;
 use MartKuper\OnePageCRM\Misc\Misc as Misc;
-
+ 
 /**
  * Contacts class
  *
@@ -126,7 +126,7 @@ class Contacts extends OnePageCRM {
 	 * @param Config $config Config object
 	 * @param array  $data   Contact data
 	 */
-	public function __construct(Config $config, array $data = null) 
+	public function __construct(Config $config, $data = null) 
 	{
 		parent::__construct($config);
 		if($data) {
@@ -168,7 +168,16 @@ class Contacts extends OnePageCRM {
 
 		foreach ($array as $key) {
 			if(!empty($this->$key)) {
-				$return[$key] = $this->$key;
+				if(is_array($this->$key)) {
+					foreach($this->$key as $object) {
+						if(is_object($object)) {
+							$return[$key][] = $object->toArray();	
+						}						
+					}
+				} else {
+					$return[$key] = $this->$key;	
+				}
+				
 			}
 		}
 
@@ -180,7 +189,7 @@ class Contacts extends OnePageCRM {
 	 * 
 	 * @param array $data Array containing class variables
 	 */
-	private function fromArray(array $data)
+	private function fromArray($data)
 	{
 		foreach ($data as $key => $value) {
 			if(is_array($data[$key])) {
@@ -282,89 +291,89 @@ class Contacts extends OnePageCRM {
 		return $this->custom_fields;
 	}
 
-	public function setType(string $type)
+	public function setType($type)
 	{
 		$this->type = $type;
 	}
 
-	public function setFirstName(string $first_name)
+	public function setFirstName($first_name)
 	{
 		$this->first_name = $first_name;
 	}
 
-	public function setLastName(string $last_name)
+	public function setLastName($last_name)
 	{
 		$this->last_name = $last_name;
 	}
 
-	public function setCompanyName(string $company_name)
+	public function setCompanyName($company_name)
 	{
 		$this->company_name = $company_name;
 	}
 
-	public function setJobTitle(string $job_title)
+	public function setJobTitle($job_title)
 	{
 		$this->job_title = $job_title;
 	}
 
-	public function setStatusId(string $status_id)
+	public function setStatusId($status_id)
 	{
 		$this->status_id = $status_id;
 	}
 
-	public function setStatus(string $status)
+	public function setStatus($status)
 	{
 		$this->status = $status;
 	}
 
-	public function setTags(array $tags)
+	public function setTags($tags)
 	{
 		$this->tags = $tags;
 	}
 
-	public function setStarred(boolean $starred)
+	public function setStarred($starred)
 	{
 		$this->starred = $starred;
 	}
 
-	public function setOwnerId(string $owner_id)
+	public function setOwnerId($owner_id)
 	{
 		$this->owner_id = $owner_id;
 	}
 
-	public function setAddressList(array $address_list)
+	public function addAddressList($address_list)
 	{
-		$this->address_list = $address_list;
+		$this->address_list[] = $address_list;
 	}
 
 
-	public function setBackground(string $background)
+	public function setBackground($background)
 	{
 		$this->background = $background;
 	}
 
-	public function setLeadSourceId(string $lead_source_id)
+	public function setLeadSourceId($lead_source_id)
 	{
 		$this->lead_source_id = $lead_source_id;
 	}
 
-	public function setPhones(array $phones)
+	public function addPhones($phones)
 	{
-		$this->phones = $phones;
+		$this->phones[] = $phones;
 	}
 
-	public function setEmails(array $emails)
+	public function addEmails($emails)
 	{
-		$this->emails = $emails;
+		$this->emails[] = $emails;
 	}
 
-	public function setUrls(array $urls)
+	public function addUrls($urls)
 	{
-		$this->urls = $urls;
+		$this->urls[] = $urls;
 	}
 
-	public function setCustomFields(array $custom_fields)
+	public function addCustomFields($custom_fields)
 	{
-		$this->custom_fields = $custom_fields;
+		$this->custom_fields[] = $custom_fields;
 	}
 }

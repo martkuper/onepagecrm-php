@@ -46,7 +46,7 @@ class ContactsAddressList {
 	 * Initialize class variables
 	 * @param array $data The data to initialize the class with
 	 */
-	public function __construct(array $data = null)
+	public function __construct($data = null)
 	{
 		if($data) {
 			$this->address      = $data['address'];
@@ -107,27 +107,27 @@ class ContactsAddressList {
 		return $this->country_code;
 	}
 
-	public function setAddress(string $address)
+	public function setAddress($address)
 	{
 		$this->address = $address;
 	}
 
-	public function setCity(string $city)
+	public function setCity($city)
 	{
 		$this->city = $city;
 	}
 
-	public function setState(string $state)
+	public function setState($state)
 	{
 		$this->state = $state;
 	}
 
-	public function setZipCode(string $zip_code)
+	public function setZipCode($zip_code)
 	{
 		$this->zip_code = $zip_code;
 	}
 
-	public function setCountryCode(string $country_code)
+	public function setCountryCode($country_code)
 	{
 		$this->country_code = $country_code;
 	}

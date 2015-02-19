@@ -41,7 +41,7 @@ class ContactsPhones {
 	 * Initialize class variables
 	 * @param array $data The data to initialize the class with
 	 */
-	public function __construct(array $data = null)
+	public function __construct($data = null)
 	{
 		if($data) {
 			if(!in_array($type, $this->supported_types)){
@@ -85,7 +85,7 @@ class ContactsPhones {
 		return $this->value;
 	}
 
-	public function setType(string $type)
+	public function setType($type)
 	{		
 		if(!in_array($type, $this->supported_types)){
 			throw new TypeNotSupportedException('', implode(", ", $this->supported_types));
@@ -94,7 +94,7 @@ class ContactsPhones {
 		$this->type = $type;
 	}
 
-	public function setValue(string $value)
+	public function setValue($value)
 	{
 		$this->value = $value;
 	}

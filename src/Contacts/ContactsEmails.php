@@ -28,7 +28,7 @@ class ContactsEmails {
 	 * Initialize class variables
 	 * @param array $data The data to initialize the class with
 	 */
-	public function __construct(array $data = null)
+	public function __construct($data = null)
 	{
 		if($data) {
 			$this->type  = $data['type'];
@@ -68,12 +68,12 @@ class ContactsEmails {
 		return $this->value;
 	}
 
-	public function setType(string $type)
+	public function setType($type)
 	{
 		$this->type = $type;
 	}
 
-	public function setValue(string $value)
+	public function setValue($value)
 	{
 		$this->value = $value;
 	}

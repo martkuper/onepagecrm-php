@@ -28,7 +28,7 @@ class ContactsCustomFields {
 	 * Initialize class variables
 	 * @param array $data The data to initialize the class with
 	 */
-	public function __construct(array $data = null)
+	public function __construct($data = null)
 	{
 		if($data) {
 			$this->id = $data['custom_field']['id'];
@@ -68,12 +68,12 @@ class ContactsCustomFields {
 		return $this->value;
 	}
 
-	public function setId(string $id)
+	public function setId($id)
 	{
 		$this->id = $id;
 	}
 
-	public function setValue(string $value)
+	public function setValue($value)
 	{
 		$this->value = $value;
 	}
