@@ -125,9 +125,8 @@ class Contacts extends OnePageCRM {
 	private $partial;
 
 	/**
-	 * Initializes parent configuration
-	 *
-	 * TODO: Complete documentation
+	 * Initializes parent configuration 
+	 * and if data array is passed, initializes class variables
 	 * 
 	 * @param Config $config Config object
 	 * @param array  $data   Contact data
@@ -186,8 +185,9 @@ class Contacts extends OnePageCRM {
 				
 			}
 		}
+
 		if(empty($this->last_name)) {
-			$return['partial'] = 1;
+			$return['last_name'] = "-";
 		}
 
 		return $return;
