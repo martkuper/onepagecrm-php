@@ -341,7 +341,7 @@ class Contacts extends OnePageCRM {
 		$this->owner_id = $owner_id;
 	}
 
-	public function addAddressList($address_list)
+	public function addContactsAddressList($address_list)
 	{
 		$this->address_list[] = $address_list;
 	}
@@ -357,22 +357,22 @@ class Contacts extends OnePageCRM {
 		$this->lead_source_id = $lead_source_id;
 	}
 
-	public function addPhones($phones)
+	public function addContactsPhones($phones)
 	{
 		$this->phones[] = $phones;
 	}
 
-	public function addEmails($emails)
+	public function addContactsEmails($emails)
 	{
 		$this->emails[] = $emails;
 	}
 
-	public function addUrls($urls)
+	public function addContactsUrls($urls)
 	{
 		$this->urls[] = $urls;
 	}
 
-	public function addCustomFields($custom_fields)
+	public function addContactsCustomFields($custom_fields)
 	{
 		$this->custom_fields[] = $custom_fields;
 	}
