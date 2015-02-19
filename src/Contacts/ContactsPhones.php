@@ -1,6 +1,6 @@
 <?php
 namespace MartKuper\OnePageCRM\Contacts;
-
+ 
 use MartKuper\OnePageCRM\Exceptions\TypeNotSupportedException;
 
 /**
@@ -67,7 +67,7 @@ class ContactsPhones {
 		$return = [];
 
 		foreach ($keys as $key) {
-			if(!empty($this->key)) {
+			if(!empty($this->$key)) {
 				$return[$key] = $this->$key;
 			}
 		}

@@ -1,6 +1,6 @@
 <?php
 namespace MartKuper\OnePageCRM\Contacts;
-
+ 
 /**
  * ContactsCustomFields class
  *
@@ -50,7 +50,7 @@ class ContactsCustomFields {
 		$return = [];
 
 		foreach ($keys as $key) {
-			if(!empty($this->key)) {
+			if(!empty($this->$key)) {
 				$return[$key] = $this->$key;
 			}
 		}
