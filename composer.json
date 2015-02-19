@@ -2,7 +2,7 @@
     "name": "martkuper/onepagecrm-php",
     "description": "A PHP wrapper for the OnePageCRM API",
     "license": "MIT",
-    "keywords": ["api", "onepage", "onepagecrm"],
+    "keywords": ["api", "onepage", "onepagecrm", "crm"],
     "authors": [
         {
             "name": "Mart Kuper",
