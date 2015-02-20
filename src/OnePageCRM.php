@@ -57,6 +57,45 @@ abstract class OnePageCRM
 		}		
 	}
 
+	protected function get($url = null)
+	{
+		if(!$url) {
+			$url = $this->url;
+		}
+
+		$headers = $this->authenticate(null, $url, 'GET');
+		$data['headers'] = $headers;
+
+		$client = $this->guzzle_client;
+		$request = $client->createRequest('GET', $url, $data);
+		$response = $client->send($request);
+
+		return $response;
+	}
+
+	public function put($url = null, $body = null)
+	{
+		if(!$url) {
+			$url = $this->url;
+		}
+
+		if($body) {
+			$data['json'] = $body;
+		} else {
+			$data['json'] = $this->toArray();
+		}
+		
+		$headers = $this->authenticate($data['json'], $url);
+		$headers['Content-Type'] = 'application/json';
+		$data['headers'] = $headers;
+		
+		$client = $this->guzzle_client;
+		$request = $client->createRequest('POST', $url, $data);
+		$response = $client->send($request);
+		
+		return $response;
+	}
+
 	/**
 	 * Use the 'POST' method to send data to OnePageCRM
 	 *
@@ -87,7 +126,9 @@ abstract class OnePageCRM
 			$data['json'] = $this->toArray();
 		}
 		
-		// TODO: Explain
+		// If no login and password are passed in the body, this
+		// means that we are logged in and need to authenticate to the API
+		// by encrypting the post body
 		if(!isset($body['login']) && !isset($body['password'])) {
 			$headers = $this->authenticate($data['json'], $url);
 			$headers['Content-Type'] = 'application/json';
@@ -131,7 +172,7 @@ abstract class OnePageCRM
 	 * 
 	 * @return array Array of HTTP headers
 	 */
-	protected function authenticate($data, $url, $http_method = 'POST')
+	protected function authenticate($data = null, $url, $http_method = 'POST')
 	{
 		$config = $this->config;
 		$uid = $config->getUserId();

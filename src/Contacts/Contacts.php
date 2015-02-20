@@ -125,19 +125,50 @@ class Contacts extends OnePageCRM {
 	private $partial;
 
 	/**
+	 * Options to add to the GET request query
+	 * Add in the form of: option1=1&option2=2
+	 * No preceding question mark needed
+	 * TODO: Update documentation
+	 * @var string
+	 */
+	private $get_options = [
+		'sparse=1'
+	];
+
+	/**
+	 * Sub URL (including trailing slash) to send/receive data to/from
+	 * @var string
+	 */
+	private $sub_url = 'contacts/';
+
+	/**
+	 * Format in which to send/receive data to/from.
+	 * Only json supported
+	 * @var string
+	 */
+	private $data_format = 'json';
+
+	/**
 	 * Initializes parent configuration 
 	 * and if data array is passed, initializes class variables
 	 * 
 	 * @param Config $config Config object
 	 * @param array  $data   Contact data
 	 */
-	public function __construct(Config $config, $data = null) 
+	public function __construct(Config $config, $data = null)
 	{
 		parent::__construct($config);
 		if($data) {
-			$this->fromArray($data); 
+			$this->fromArray($data);
 		}
-	}	
+	}
+
+	public function get($id)
+	{
+		$get_options = implode('&', $this->get_options);
+		$response = parent::get($this->sub_url . $id . '.' . $this->data_format . '?' . $get_options);
+		$this->fromArray($response->json()['data']['contact']);		
+	}
 
 	/**
 	 * Implementation of the OnePageCRM class abstract method
@@ -198,7 +229,7 @@ class Contacts extends OnePageCRM {
 	 * 
 	 * @param array $data Array containing class variables
 	 */
-	private function fromArray($data)
+	public function fromArray($data)
 	{
 		foreach ($data as $key => $value) {
 			if(is_array($data[$key])) {
