@@ -57,12 +57,8 @@ abstract class OnePageCRM
 		}		
 	}
 
-	protected function get($url = null)
+	protected function get($url)
 	{
-		if(!$url) {
-			$url = $this->url;
-		}
-
 		$headers = $this->authenticate(null, $url, 'GET');
 		$data['headers'] = $headers;
 
@@ -73,24 +69,22 @@ abstract class OnePageCRM
 		return $response;
 	}
 
-	public function put($url = null, $body = null)
+	/**
+	 * TODO: Documentation
+	 * @param  [type] $url  [description]
+	 * @param  [type] $body [description]
+	 * @return [type]       [description]
+	 */
+	protected function put($url, $body)
 	{
-		if(!$url) {
-			$url = $this->url;
-		}
-
-		if($body) {
-			$data['json'] = $body;
-		} else {
-			$data['json'] = $this->toArray();
-		}
+		$data['json'] = $body;
 		
-		$headers = $this->authenticate($data['json'], $url);
+		$headers = $this->authenticate($data['json'], $url, 'PUT');
 		$headers['Content-Type'] = 'application/json';
 		$data['headers'] = $headers;
 		
 		$client = $this->guzzle_client;
-		$request = $client->createRequest('POST', $url, $data);
+		$request = $client->createRequest('PUT', $url, $data);
 		$response = $client->send($request);
 		
 		return $response;
@@ -114,7 +108,7 @@ abstract class OnePageCRM
 	 * @param  array|null    $body    The data to send
 	 * @return Response         	  GuzzleHttp\Response object
 	 */
-	public function post($url = null, $body = null)
+	protected function post($url = null, $body = null)
 	{
 		if(!$url) {
 			$url = $this->url;
@@ -128,7 +122,6 @@ abstract class OnePageCRM
 		
 		// If no login and password are passed in the body, this
 		// means that we are logged in and need to authenticate to the API
-		// by encrypting the post body
 		if(!isset($body['login']) && !isset($body['password'])) {
 			$headers = $this->authenticate($data['json'], $url);
 			$headers['Content-Type'] = 'application/json';
@@ -172,7 +165,7 @@ abstract class OnePageCRM
 	 * 
 	 * @return array Array of HTTP headers
 	 */
-	protected function authenticate($data = null, $url, $http_method = 'POST')
+	public function authenticate($data = null, $url, $http_method = 'POST')
 	{
 		$config = $this->config;
 		$uid = $config->getUserId();
@@ -182,7 +175,7 @@ abstract class OnePageCRM
 		$timestamp = time();
 		$auth_data = array($uid, $timestamp, $http_method, sha1($full_url));
 		$request_headers = array();
-
+		
 		if($http_method == 'POST' || $http_method == 'PUT') {
 			$json_data = json_encode($data);
 			$auth_data[] = sha1($json_data);

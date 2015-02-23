@@ -129,20 +129,28 @@ class Contacts extends OnePageCRM {
 	 * Add in the form of: option1=1&option2=2
 	 * No preceding question mark needed
 	 * TODO: Update documentation
-	 * @var string
+	 * @var array
 	 */
 	private $get_options = [
 		'sparse=1'
 	];
 
 	/**
-	 * Sub URL (including trailing slash) to send/receive data to/from
+	 * Options to add to the PUT request
+	 * @var array
+	 */
+	private $put_options = [
+		'partial' => 1 
+	];
+
+	/**
+	 * Sub URL (including trailing slash) to receive data from
 	 * @var string
 	 */
 	private $sub_url = 'contacts/';
 
 	/**
-	 * Format in which to send/receive data to/from.
+	 * Format in which to receive data.
 	 * Only json supported
 	 * @var string
 	 */
@@ -163,11 +171,34 @@ class Contacts extends OnePageCRM {
 		}
 	}
 
-	public function get($id)
+	/**
+	 * TODO: Add documentation
+	 * @param  string $id The contact id to get
+	 */
+	public function getId($id)
 	{
 		$get_options = implode('&', $this->get_options);
 		$response = parent::get($this->sub_url . $id . '.' . $this->data_format . '?' . $get_options);
 		$this->fromArray($response->json()['data']['contact']);		
+	}
+
+
+	/**
+	 * TODO: Add documentation
+	 * @param  string $url The url to get
+	 */
+	public function getUrl($url)
+	{
+		$response = parent::get($url);
+		return $response;
+	}
+
+
+	public function put($id, $body)
+	{
+		$body = array_merge($body, $this->put_options);
+		$response = parent::put($this->sub_url . $id . '.' . $this->data_format ,$body);
+		$this->fromArray($response->json()['data']['contact']);	
 	}
 
 	/**
