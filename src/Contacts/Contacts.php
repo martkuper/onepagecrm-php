@@ -119,6 +119,12 @@ class Contacts extends OnePageCRM {
 	private $custom_fields = [];
 
 	/**
+	 * User id returned from OnePageCRM
+	 * @var string
+	 */
+	private $user_id;
+
+	/**
 	 * Wheather the request is partial or not
 	 * @var integer
 	 */
@@ -126,9 +132,6 @@ class Contacts extends OnePageCRM {
 
 	/**
 	 * Options to add to the GET request query
-	 * Add in the form of: option1=1&option2=2
-	 * No preceding question mark needed
-	 * TODO: Update documentation
 	 * @var array
 	 */
 	private $get_options = [
@@ -151,7 +154,7 @@ class Contacts extends OnePageCRM {
 
 	/**
 	 * Format in which to receive data.
-	 * Only json supported
+	 * Only JSON supported
 	 * @var string
 	 */
 	private $data_format = 'json';
@@ -194,8 +197,9 @@ class Contacts extends OnePageCRM {
 	}
 
 
-	public function put($id, $body)
+	public function put($body)
 	{
+		$id = $this->user_id;
 		$body = array_merge($body, $this->put_options);
 		$response = parent::put($this->sub_url . $id . '.' . $this->data_format ,$body);
 		$this->fromArray($response->json()['data']['contact']);	
@@ -367,6 +371,11 @@ class Contacts extends OnePageCRM {
 		return $this->partial;
 	}
 
+	public function getUserId()
+    {
+        return $this->user_id;
+    }
+
 	public function setType($type)
 	{
 		$this->type = $type;
@@ -457,4 +466,9 @@ class Contacts extends OnePageCRM {
 	{
 		$this->partial = $partial;
 	}
+     
+    public function setUserId($user_id)
+    {
+        $this->user_id = $user_id;
+    }
 }

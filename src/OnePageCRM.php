@@ -108,7 +108,7 @@ abstract class OnePageCRM
 	 * @param  array|null    $body    The data to send
 	 * @return Response         	  GuzzleHttp\Response object
 	 */
-	protected function post($url = null, $body = null)
+	public function post($url = null, $body = null) 
 	{
 		if(!$url) {
 			$url = $this->url;
