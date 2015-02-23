@@ -197,7 +197,7 @@ class Contacts extends OnePageCRM {
 	}
 
 
-	public function put($body)
+	public function update($body) 
 	{
 		$id = $this->user_id;
 		$body = array_merge($body, $this->put_options);
