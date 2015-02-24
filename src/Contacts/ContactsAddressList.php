@@ -51,7 +51,7 @@ class ContactsAddressList {
 		if($data) {
 			$this->address      = $data['address'] ? $data['address'] : null;
 			$this->city         = $data['city'] ? $data['city'] : null;
-			$this->state        = $data['state'] ? $data['state'] : null;
+			$this->state        = key_exists($data['state']) ? $data['state'] : null;
 			$this->zip_code     = $data['zip_code'] ? $data['zip_code'] : null;
 			$this->country_code = $data['country_code'] ? $data['country_code'] : null;
 		}			
