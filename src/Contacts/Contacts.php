@@ -428,7 +428,9 @@ class Contacts extends OnePageCRM {
 
 	public function addContactsAddressList($address_list)
 	{
-		$this->address_list[] = $address_list;
+		if(is_object($address_list) && (!empty($address_list->getAddress()) || !empty($address_list->getCity()) || !empty($address_list->getState()) || !empty($address_list->getZipCode()) || !empty($address_list->getCountryCode()))){
+			$this->address_list[] = $address_list;
+		}
 	}
 
 
@@ -444,21 +446,28 @@ class Contacts extends OnePageCRM {
 
 	public function addContactsPhones($phones)
 	{
-		$this->phones[] = $phones;
+		if(is_object($phones) && !empty($phones->getType()) && !empty($phones->getValue())) {
+			$this->phones[] = $phones;
+		}
 	}
 
 	public function addContactsEmails($emails)
 	{
-		$this->emails[] = $emails;
+		if(is_object($emails) && !empty($emails->getType()) && !empty($emails->getValue())) {
+			$this->emails[] = $emails;
+		}
 	}
 
 	public function addContactsUrls($urls)
 	{
-		$this->urls[] = $urls;
+		if(is_object($urls) && !empty($urls->getType()) && !empty($urls->getValue())) {
+			$this->urls[] = $urls;
+		}
 	}
 
 	public function addContactsCustomFields($custom_fields)
 	{
+		if(is_object($custom_fields) && !empty($custom_fields->getId()) && !empty($custom_fields->getValue())) {
 		$this->custom_fields[] = $custom_fields;
 	}
 
