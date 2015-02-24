@@ -180,6 +180,7 @@ class Contacts extends OnePageCRM {
 	 */
 	public function getId($id)
 	{
+		$this->user_id = $id;
 		$get_options = implode('&', $this->get_options);
 		$response = parent::get($this->sub_url . $id . '.' . $this->data_format . '?' . $get_options);
 		$this->fromArray($response->json()['data']['contact']);		
