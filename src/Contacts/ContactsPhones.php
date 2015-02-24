@@ -44,9 +44,9 @@ class ContactsPhones {
 	public function __construct($data = null)
 	{
 		if($data) {
-			if(!in_array($this->type, $this->supported_types)){
-				throw new TypeNotSupportedException('', implode(", ", $this->supported_types));
-			}
+			// if(!in_array($this->type, $this->supported_types)){
+			// 	throw new TypeNotSupportedException('', implode(", ", $this->supported_types));
+			// }
 
 			$this->type  = $data['type'];
 			$this->value = $data['value'];	
@@ -87,9 +87,9 @@ class ContactsPhones {
 
 	public function setType($type)
 	{		
-		if(!in_array($this->type, $this->supported_types)){
-			throw new TypeNotSupportedException('', implode(", ", $this->supported_types));
-		}
+		// if(!in_array($this->type, $this->supported_types)){
+		// 	throw new TypeNotSupportedException('', implode(", ", $this->supported_types));
+		// }
 
 		$this->type = $type;
 	}
