@@ -200,8 +200,7 @@ class Contacts extends OnePageCRM {
 	public function update() 
 	{
 		$id = $this->user_id;
-		$body = array_merge($body, $this->put_options);
-		$body = array_merge($body, $this->toArray());
+		$body = array_merge($this->put_options, $this->toArray());
 		$response = parent::put($this->sub_url . $id . '.' . $this->data_format ,$body);
 		$this->fromArray($response->json()['data']['contact']);	
 	}
