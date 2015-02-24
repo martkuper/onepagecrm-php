@@ -48,8 +48,8 @@ class ContactsPhones {
 			// 	throw new TypeNotSupportedException('', implode(", ", $this->supported_types));
 			// }
 
-			$this->type  = $data['type'];
-			$this->value = $data['value'];	
+			$this->type  = $data['type'] ? $data['type'] : null;
+			$this->value = $data['value'] ? $data['value'] : null;	
 		}		
 	}
 

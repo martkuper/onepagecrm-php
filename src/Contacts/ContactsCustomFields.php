@@ -31,8 +31,8 @@ class ContactsCustomFields {
 	public function __construct($data = null)
 	{
 		if($data) {
-			$this->id = $data['custom_field']['id'];
-			$this->value = $data['value'];	
+			$this->id = $data['custom_field']['id'] ? $data['custom_field']['id'] : null;
+			$this->value = $data['value'] ? $data['value'] : null;	
 		}		
 	}
 

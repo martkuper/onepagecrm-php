@@ -31,8 +31,8 @@ class ContactsEmails {
 	public function __construct($data = null)
 	{
 		if($data) {
-			$this->type  = $data['type'];
-			$this->value = $data['value'];	
+			$this->type  = $data['type'] ? $data['type'] : null;
+			$this->value = $data['value'] ? $data['value'] : null;	
 		}		
 	}
 
