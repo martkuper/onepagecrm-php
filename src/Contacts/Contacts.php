@@ -468,7 +468,8 @@ class Contacts extends OnePageCRM {
 	public function addContactsCustomFields($custom_fields)
 	{
 		if(is_object($custom_fields) && !empty($custom_fields->getId()) && !empty($custom_fields->getValue())) {
-		$this->custom_fields[] = $custom_fields;
+			$this->custom_fields[] = $custom_fields;
+		}
 	}
 
 	public function setPartial($partial)
