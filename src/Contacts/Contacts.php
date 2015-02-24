@@ -267,7 +267,7 @@ class Contacts extends OnePageCRM {
 	public function fromArray($data)
 	{
 		foreach ($data as $key => $value) {
-			if(is_array($data[$key])) {
+			if(is_array($data[$key]) && !empty($data[$key])) {
 				$object_str = get_class($this) . Misc::snakeCaseToCamelCase($key, true);
 
 				foreach ($value as $key2 => $value2) {
@@ -275,7 +275,7 @@ class Contacts extends OnePageCRM {
 					array_push($this->$key, $object);
 				}
 				
-			} else if(isset($data[$key])) {
+			} else if(isset($data[$key]) && !empty($data[$key])) {
 				$this->$key = $data[$key];
 			}
 		}		
