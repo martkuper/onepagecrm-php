@@ -242,7 +242,7 @@ class Contacts extends OnePageCRM {
 			if(!empty($this->$key)) {
 				if(is_array($this->$key)) {
 					foreach($this->$key as $object) {
-						if(is_object($object)) {
+						if(is_object($object) && !empty($object->toArray())) {
 							$return[$key][] = $object->toArray();	
 						}						
 					}
