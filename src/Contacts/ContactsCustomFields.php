@@ -42,18 +42,23 @@ class ContactsCustomFields {
 	 */
 	public function toArray()
 	{
-		$keys = [
-			'id',
-			'value'
+		// $keys = [
+		// 	'id',
+		// 	'value'
+		// ];
+
+		$return = [
+			'custom_field' => [
+				'id' => $this->id
+			],
+			'value' => $this->value
 		];
 
-		$return = [];
-
-		foreach ($keys as $key) {
-			if(!empty($this->$key)) {
-				$return[$key] = $this->$key;
-			}
-		}
+		// foreach ($keys as $key) {
+		// 	if(!empty($this->$key)) {
+		// 		$return[$key] = $this->$key;
+		// 	}
+		// }
 		
 		return $return;		
 	}
