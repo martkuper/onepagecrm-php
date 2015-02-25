@@ -75,6 +75,20 @@ class ContactsPhones {
 		return $return;		
 	}
 
+	public function toString($delimiter = null)
+	{
+		if(empty($delimiter)) {
+			$delimiter = ',';
+		}
+		$to_array = $this->toArray();
+		$array = [];
+
+		foreach ($to_array as $key => $value) {
+			$array[] = $value;
+		}
+		return implode($delimiter, $array);
+	}
+
 	public function getType()
 	{
 		return $this->type;
