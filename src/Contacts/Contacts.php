@@ -491,4 +491,16 @@ class Contacts extends OnePageCRM {
     {
         $this->user_id = $user_id;
     }
+
+    public function deleteEmail($index)
+    {
+    	unset($this->emails[$index]);
+    	$this->emails = array_values($this->emails);
+    }
+
+    public function deletePhone($index)
+    {
+    	unset($this->phones[$index]);
+    	$this->phones = array_values($this->phones);
+    }
 }
