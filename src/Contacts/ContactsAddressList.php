@@ -52,7 +52,7 @@ class ContactsAddressList {
 			$this->address      = key_exists('address', $data) ? $data['address'] : null;
 			$this->city         = key_exists('city', $data) ? $data['city'] : null;
 			$this->state        = key_exists('state', $data) ? $data['state'] : null;
-			$this->zip_code     = key_exists('zip_code', $datade) ? $data['zip_code'] : null;
+			$this->zip_code     = key_exists('zip_code', $data) ? $data['zip_code'] : null;
 			$this->country_code = key_exists('country_code', $data) ? $data['country_code'] : null;
 		}			
 	}
