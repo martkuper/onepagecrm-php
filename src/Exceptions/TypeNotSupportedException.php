@@ -13,7 +13,7 @@ class TypeNotSupportedException extends \Exception {
 	public function __construct($name, $expected, $message = null, $code = 0)
 	{
 		if(!$message) {
-			$message = 'Unsupported type: ' . $name . '. Expected ' . $expected;
+			$message = 'Unsupported type: ' . $name . '. Expected: ' . $expected;
 			parent::__construct($message, $code);
 		}
 	}
