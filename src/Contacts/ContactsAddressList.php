@@ -49,11 +49,11 @@ class ContactsAddressList {
 	public function __construct($data = null)
 	{
 		if($data) {
-			$this->address      = $data['address'] ? $data['address'] : null;
-			$this->city         = $data['city'] ? $data['city'] : null;
-			$this->state        = key_exists($data['state']) ? $data['state'] : null;
-			$this->zip_code     = $data['zip_code'] ? $data['zip_code'] : null;
-			$this->country_code = $data['country_code'] ? $data['country_code'] : null;
+			$this->address      = key_exists('address', $data) ? $data['address'] : null;
+			$this->city         = key_exists('city', $data) ? $data['city'] : null;
+			$this->state        = key_exists('state', $data) ? $data['state'] : null;
+			$this->zip_code     = key_exists('zip_code', $datade) ? $data['zip_code'] : null;
+			$this->country_code = key_exists('country_code', $data) ? $data['country_code'] : null;
 		}			
 	}
 
