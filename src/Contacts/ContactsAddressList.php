@@ -48,12 +48,12 @@ class ContactsAddressList {
 	 */
 	public function __construct($data = null)
 	{
-		if($data) {
-			$this->address      = key_exists('address', $data) ? $data['address'] : null;
-			$this->city         = key_exists('city', $data) ? $data['city'] : null;
-			$this->state        = key_exists('state', $data) ? $data['state'] : null;
-			$this->zip_code     = key_exists('zip_code', $data) ? $data['zip_code'] : null;
-			$this->country_code = key_exists('country_code', $data) ? $data['country_code'] : null;
+		if(!empty($data)) {
+			$this->address      = array_key_exists('address', $data) ? $data['address'] : null;
+			$this->city         = array_key_exists('city', $data) ? $data['city'] : null;
+			$this->state        = array_key_exists('state', $data) ? $data['state'] : null;
+			$this->zip_code     = array_key_exists('zip_code', $data) ? $data['zip_code'] : null;
+			$this->country_code = array_key_exists('country_code', $data) ? $data['country_code'] : null;
 		}			
 	}
 
@@ -65,9 +65,9 @@ class ContactsAddressList {
 	{
 		$keys = [
 			'address',
-			'city',
-			'state',
 			'zip_code',
+			'city',
+			'state',			
 			'country_code'
 		];
 
@@ -80,6 +80,20 @@ class ContactsAddressList {
 		}
 		
 		return $return;
+	}
+
+	public function toString($delimiter = null)
+	{
+		if(empty($delimiter)) {
+			$delimiter = ',';
+		}
+		$to_array = $this->toArray();
+		$array = [];
+
+		foreach ($to_array as $key => $value) {
+			$array[] = $value;
+		}
+		return implode($delimiter, $array);
 	}
 
 	public function getAddress()

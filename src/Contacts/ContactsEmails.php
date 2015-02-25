@@ -30,9 +30,9 @@ class ContactsEmails {
 	 */
 	public function __construct($data = null)
 	{
-		if($data) {
-			$this->type  = $data['type'] ? $data['type'] : null;
-			$this->value = $data['value'] ? $data['value'] : null;	
+		if(!empty($data)) {
+			$this->type  = array_key_exists('type', $data) ? $data['type'] : null;
+			$this->value = array_key_exists('value', $data) ? $data['value'] : null;	
 		}		
 	}
 

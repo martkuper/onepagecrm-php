@@ -30,9 +30,9 @@ class ContactsCustomFields {
 	 */
 	public function __construct($data = null)
 	{
-		if($data) {
-			$this->id = $data['custom_field']['id'] ? $data['custom_field']['id'] : null;
-			$this->value = $data['value'] ? $data['value'] : null;	
+		if(!empty($data)) {
+			$this->id = (array_key_exists('custom_field', $data) && array_key_exists('id', $data['custom_field'])) ? $data['custom_field']['id'] : null;
+			$this->value = array_key_exists('value', $data) ? $data['value'] : null;	
 		}		
 	}
 

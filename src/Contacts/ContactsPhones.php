@@ -43,13 +43,13 @@ class ContactsPhones {
 	 */
 	public function __construct($data = null)
 	{
-		if($data) {
-			// if(!in_array($this->type, $this->supported_types)){
-			// 	throw new TypeNotSupportedException('', implode(", ", $this->supported_types));
-			// }
+		if(!empty($data)) {
+			if(!in_array($data['type'], $this->supported_types)){
+				throw new TypeNotSupportedException($data['type'], 'Expected: ' . implode(", ", $this->supported_types));
+			}
 
-			$this->type  = $data['type'] ? $data['type'] : null;
-			$this->value = $data['value'] ? $data['value'] : null;	
+			$this->type  = array_key_exists('type', $data) ? $data['type'] : null;
+			$this->value = array_key_exists('value', $data) ? $data['value'] : null;	
 		}		
 	}
 
