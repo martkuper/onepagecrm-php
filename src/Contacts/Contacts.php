@@ -169,41 +169,49 @@ class Contacts extends OnePageCRM {
 	public function __construct(Config $config, $data = null)
 	{
 		parent::__construct($config);
-		if($data) {
+		if(!empty($data)) {
 			$this->fromArray($data);
 		}
 	}
 
 	/**
-	 * TODO: Add documentation
+	 * Get a user from OnePageCRM by it's ID
+	 * If no $id is given, nothing will happen 
 	 * @param  string $id The contact id to get
+	 * @return Response GuzzleHttp response object
 	 */
 	public function getId($id)
 	{
 		$this->user_id = $id;
+
+		if(empty($id)) {
+			return;
+		}
+
 		$get_options = implode('&', $this->get_options);
 		$response = parent::get($this->sub_url . $id . '.' . $this->data_format . '?' . $get_options);
 		$this->fromArray($response->json()['data']['contact']);		
-	}
-
-
-	/**
-	 * TODO: Add documentation
-	 * @param  string $url The url to get
-	 */
-	public function getUrl($url)
-	{
-		$response = parent::get($url);
 		return $response;
 	}
 
 
+	/**
+	 * Update this class to OnePageCRM
+	 * If no user_id is set in the class, nothing will happen
+	 * @return Response GuzzleHttp response object
+	 */
 	public function update() 
 	{
 		$id = $this->user_id;
+
+		if(empty($id)) {
+			return;
+		}
+
 		$body = array_merge($this->put_options, $this->toArray());
 		$response = parent::put($this->sub_url . $id . '.' . $this->data_format ,$body);
 		$this->fromArray($response->json()['data']['contact']);	
+		return $response;
 	}
 
 	/**
