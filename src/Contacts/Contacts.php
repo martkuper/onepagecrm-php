@@ -438,7 +438,8 @@ class Contacts extends OnePageCRM {
 	public function addContactsAddressList($address_list)
 	{
 		if(is_object($address_list) && (!empty($address_list->getAddress()) || !empty($address_list->getCity()) || !empty($address_list->getState()) || !empty($address_list->getZipCode()) || !empty($address_list->getCountryCode()))){
-			$this->address_list[] = $address_list;
+			// Index 0, because only 1 address is allowed in onepagecrm
+			$this->address_list[0] = $address_list;
 		}
 	}
 
