@@ -503,4 +503,16 @@ class Contacts extends OnePageCRM {
     	unset($this->phones[$index]);
     	$this->phones = array_values($this->phones);
     }
+
+    public function deleteCustomField($index)
+    {
+    	unset($this->custom_fields[$index]);
+    	$this->custom_fields = array_values($this->custom_fields);
+    }
+
+    public function deleteUrl($index)
+    {
+    	unset($this->urls[$index]);
+    	$this->urls = array_values($this->urls);
+    }
 }
