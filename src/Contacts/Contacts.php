@@ -125,12 +125,6 @@ class Contacts extends OnePageCRM {
 	private $user_id;
 
 	/**
-	 * Wheather the request is partial or not
-	 * @var integer
-	 */
-	private $partial;
-
-	/**
 	 * Options to add to the GET request query
 	 * @var array
 	 */
@@ -482,12 +476,7 @@ class Contacts extends OnePageCRM {
 		}
 	}
 
-	public function setPartial($partial)
-	{
-		$this->partial = $partial;
-	}
-     
-    public function setUserId($user_id)
+	public function setUserId($user_id)
     {
         $this->user_id = $user_id;
     }
