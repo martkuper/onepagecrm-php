@@ -15,8 +15,8 @@ abstract class OnePageCRM
 {
 
 	/**
-	 * [$url description]
-	 * @var [type]
+	 * Sub URL to post to
+	 * @var string
 	 */
 	private $url;
 
@@ -24,7 +24,7 @@ abstract class OnePageCRM
  	* Guzzle client object
  	* @var GuzzleHttp\Client
  	*/
-	private $guzzleClient;
+	private $guzzle_client;
 
 	/**
 	 * Configuration object
@@ -35,28 +35,59 @@ abstract class OnePageCRM
 	/**
 	 * OnePageCRM class constructor
 	 *
-	 * TODO: Improve documentation
+	 * Sets class variables and logs in to the OnePageCRM API
 	 * 
 	 * @param Client|null $client GuzzleHttp/Client object
 	 * @param Config      $config Config object
 	 */
-	public function __construct(Config $config, Client $client = null)
+	public function __construct(Config $config)
 	{
-		if(!$client) {
-			$client = new Client([
-				'base_url'	=>	$config->getBaseUrl()
-			]);
-		}	
+		$client = new Client([
+			'base_url'	=>	$config->getBaseUrl()
+		]);
+	
+		$this->guzzle_client = $client;
+		$this->config        = $config;
 
-		$this->guzzleClient = $client;
-		$this->config       = $config;
-
-		$className = explode("\\", strtolower(get_class($this)));
-		$this->url = array_pop($className) . '.json';
+		$class_name = explode("\\", strtolower(get_class($this)));
+		$this->url = array_pop($class_name) . '.json';
 
 		if(!$config->getAuthKey() || !$config->getUserId()) {
 			$this->login();	
 		}		
+	}
+
+	protected function get($url)
+	{
+		$headers = $this->authenticate(null, $url, 'GET');
+		$data['headers'] = $headers;
+
+		$client = $this->guzzle_client;
+		$request = $client->createRequest('GET', $url, $data);
+		$response = $client->send($request);
+
+		return $response;
+	}
+
+	/**
+	 * TODO: Documentation
+	 * @param  [type] $url  [description]
+	 * @param  [type] $body [description]
+	 * @return [type]       [description]
+	 */
+	protected function put($url, $body)
+	{
+		$data['json'] = $body;
+		
+		$headers = $this->authenticate($data['json'], $url, 'PUT');
+		$headers['Content-Type'] = 'application/json';
+		$data['headers'] = $headers;
+		
+		$client = $this->guzzle_client;
+		$request = $client->createRequest('PUT', $url, $data);
+		$response = $client->send($request);
+		
+		return $response;
 	}
 
 	/**
@@ -77,7 +108,7 @@ abstract class OnePageCRM
 	 * @param  array|null    $body    The data to send
 	 * @return Response         	  GuzzleHttp\Response object
 	 */
-	public function post($url = null, $body = null)
+	public function post($url = null, $body = null) 
 	{
 		if(!$url) {
 			$url = $this->url;
@@ -89,25 +120,25 @@ abstract class OnePageCRM
 			$data['json'] = $this->toArray();
 		}
 		
-		// TODO: Explain
+		// If no login and password are passed in the body, this
+		// means that we are logged in and need to authenticate to the API
 		if(!isset($body['login']) && !isset($body['password'])) {
 			$headers = $this->authenticate($data['json'], $url);
 			$headers['Content-Type'] = 'application/json';
 			$data['headers'] = $headers;
 		}
 
-		$client = $this->guzzleClient;
+		$client = $this->guzzle_client;
 		$request = $client->createRequest('POST', $url, $data);
-		$request->getBody()->getContents();
 		$response = $client->send($request);
 		
 		return $response;
 	}
 
 	/**
-	 * TODO: Update documentation
-	 * [login description]
-	 * @return [type] [description]
+	 * Logs in to the OnePageCRM API
+	 * 
+	 * @return Response GuzzleHttp\Response object
 	 */
 	protected function login()
 	{
@@ -129,13 +160,12 @@ abstract class OnePageCRM
 	}
 
 	/**
-	 * Generate OnePageCRM authentication keys
-	 * 
-	 * TODO: update documentation
+	 * Generate authentication keys
+	 * in order to sign messages to the OnePageCRM API
 	 * 
 	 * @return array Array of HTTP headers
 	 */
-	protected function authenticate($data, $url, $http_method = 'POST')
+	public function authenticate($data = null, $url, $http_method = 'POST')
 	{
 		$config = $this->config;
 		$uid = $config->getUserId();
@@ -145,7 +175,7 @@ abstract class OnePageCRM
 		$timestamp = time();
 		$auth_data = array($uid, $timestamp, $http_method, sha1($full_url));
 		$request_headers = array();
-
+		
 		if($http_method == 'POST' || $http_method == 'PUT') {
 			$json_data = json_encode($data);
 			$auth_data[] = sha1($json_data);
@@ -164,5 +194,10 @@ abstract class OnePageCRM
 		return $request_headers;
 	}
 
+	/**
+	 * Abstract function to convert variables to an array
+	 * 
+	 * @return array Array of class variables
+	 */
 	abstract protected function toArray();
 }

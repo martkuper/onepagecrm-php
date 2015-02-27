@@ -2,7 +2,7 @@
     "name": "martkuper/onepagecrm-php",
     "description": "A PHP wrapper for the OnePageCRM API",
     "license": "MIT",
-    "keywords": ["api", "onepage", "onepagecrm"],
+    "keywords": ["api", "onepage", "onepagecrm", "crm"],
     "authors": [
         {
             "name": "Mart Kuper",
@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "5.2"
+        "guzzlehttp/guzzle": "5.2.*"
         },
     "require-dev": {
         "phpunit/phpunit": "4.0.*",
