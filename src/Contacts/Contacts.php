@@ -122,7 +122,7 @@ class Contacts extends OnePageCRM {
 	 * User id returned from OnePageCRM
 	 * @var string
 	 */
-	private $user_id;
+	private $id;
 
 	/**
 	 * Options to add to the GET request query
@@ -174,9 +174,9 @@ class Contacts extends OnePageCRM {
 	 * @param  string $id The contact id to get
 	 * @return Response GuzzleHttp response object
 	 */
-	public function getId($id)
+	public function getOnePageId($id)
 	{
-		$this->user_id = $id;
+		$this->id = $id;
 
 		if(empty($id)) {
 			return;
@@ -191,12 +191,12 @@ class Contacts extends OnePageCRM {
 
 	/**
 	 * Update this class to OnePageCRM
-	 * If no user_id is set in the class, nothing will happen
+	 * If no id is set in the class, nothing will happen
 	 * @return Response GuzzleHttp response object
 	 */
 	public function update() 
 	{
-		$id = $this->user_id;
+		$id = $this->id;
 
 		if(empty($id)) {
 			return;
@@ -376,7 +376,7 @@ class Contacts extends OnePageCRM {
 
 	public function getUserId()
     {
-        return $this->user_id;
+        return $this->id;
     }
 
 	public function setType($type)
@@ -476,9 +476,9 @@ class Contacts extends OnePageCRM {
 		}
 	}
 
-	public function setUserId($user_id)
+	public function setUserId($id)
     {
-        $this->user_id = $user_id;
+        $this->id = $id;
     }
 
     public function deleteEmail($index)
