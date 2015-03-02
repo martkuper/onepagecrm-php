@@ -10,7 +10,7 @@ class Misc {
 	 * @param  boolean $first_char_caps Wheather to use camelCase or CamelCase
 	 * @return string                   The converted string
 	 */
-	static function snakeCaseToCamelCase( $string, $first_char_caps = false)
+	static function snakeCaseToCamelCase($string, $first_char_caps = false)
 	{
 		if( $first_char_caps == true )
 		{
