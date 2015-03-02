@@ -99,6 +99,7 @@ class Actions extends OnePageCRM {
 			'status',
 			'done',
 			'done_date',
+			'contact_id',
 		];
 
 		$return = [];
