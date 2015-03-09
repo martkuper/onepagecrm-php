@@ -129,14 +129,14 @@ abstract class OnePageCRM
 			$data['headers'] = $headers; 
 		}
 
-		//try{
+		try{
 			$client = $this->guzzle_client;
 			$request = $client->createRequest('POST', $url, $data);
 			$response = $client->send($request);		
 			return $response;
-		//} catch(\Exception $e) {
-		//	throw new OnePageCommunicationException($e->getResponse()->getBody()->getContents());
-		//}
+		} catch(GuzzleHttp\Exception\ClientException $e) {
+			throw new OnePageCommunicationException($e->getResponse()->getBody()->getContents());
+		}
 			
 	}
 
