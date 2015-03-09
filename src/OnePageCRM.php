@@ -3,7 +3,7 @@ namespace MartKuper\OnePageCRM;
 
 use MartKuper\OnePageCRM\Config\Config;
 use GuzzleHttp\Client;
-use MartKuper\OnePageCRM\Exceptions;
+use MartKuper\OnePageCRM\Exceptions\OnePageCommunicationException;
 
 /**
  * Base class that handles OnePageCRM connection
