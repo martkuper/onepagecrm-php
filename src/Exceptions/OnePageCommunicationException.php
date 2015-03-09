@@ -13,8 +13,7 @@ class OnePageCommunicationException extends \Exception {
 	public function __construct($e, $message = null, $code = 0)
 	{
 		if(!$message) {
-			$message = 'Error communicating with OnePageCRM: \\n status: ' . $e['status'] . 
-						' message: ' . $e['message'] . ' error message: ' . $e['error_message'];
+			$message = 'Error communicating with OnePageCRM: ' . $e;
 			parent::__construct($message, $code);
 		} else {
 			parent::__construct($message, $code);
