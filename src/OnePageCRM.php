@@ -54,7 +54,11 @@ abstract class OnePageCRM
 		$this->url = array_pop($class_name) . '.json';
 
 		if(!$config->getAuthKey() || !$config->getUserId()) {
-			$this->login();	
+			try {
+				$this->login();	
+			} catch(GuzzleHttp\Exception\ClientException $e) {
+				throw new OnePageCommunicationException($e->getResponse()->getBody()->getContents());
+			}
 		}		
 	}
 
