@@ -3,6 +3,7 @@ namespace MartKuper\OnePageCRM;
 
 use MartKuper\OnePageCRM\Config\Config;
 use GuzzleHttp\Client;
+use MartKuper\OnePageCRM\Exceptions;
 
 /**
  * Base class that handles OnePageCRM connection
@@ -125,14 +126,18 @@ abstract class OnePageCRM
 		if(!isset($body['login']) && !isset($body['password'])) {
 			$headers = $this->authenticate($data['json'], $url);
 			$headers['Content-Type'] = 'application/json';
-			$data['headers'] = $headers;
+			$data['headers'] = $headers; 
 		}
 
-		$client = $this->guzzle_client;
-		$request = $client->createRequest('POST', $url, $data);
-		$response = $client->send($request);
-		
-		return $response;
+		try{
+			$client = $this->guzzle_client;
+			$request = $client->createRequest('POST', $url, $data);
+			$response = $client->send($request);		
+			return $response;
+		} catch(\Exception $e) {
+			throw new OnePageCommunicationException($e->getResponse()->getBody()->getContents());
+		}
+			
 	}
 
 	/**
