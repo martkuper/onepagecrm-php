@@ -37,7 +37,7 @@ abstract class OnePageCRM
 	 * OnePageCRM class constructor
 	 *
 	 * Sets class variables and logs in to the OnePageCRM API
-	 * 
+	 * TODO: Update parameter doc
 	 * @param Client|null $client GuzzleHttp/Client object
 	 * @param Config      $config Config object
 	 */
@@ -113,7 +113,7 @@ abstract class OnePageCRM
 	 * @param  array|null    $body    The data to send
 	 * @return Response         	  GuzzleHttp\Response object
 	 */
-	public function post($url = null, $body = null) 
+	public function postData($url = null, $body = null) 
 	{
 		if(!$url) {
 			$url = $this->url;
@@ -153,7 +153,7 @@ abstract class OnePageCRM
 	{
 		$config = $this->config;
 
-		$response = $this->post('login.json', [
+		$response = $this->postData('login.json', [
 			'login' => $config->getEmail(), 
 			'password' => $config->getPassword()
 		]);

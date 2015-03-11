@@ -145,7 +145,7 @@ class Actions extends OnePageCRM {
 	 */
 	public function post($url = null, $body = null) 
 	{
-		return parent::post($this->sub_url . $this->contact_id . '/actions.' . $this->data_format);
+		return parent::postData($this->sub_url . $this->contact_id . '/actions.' . $this->data_format);
 	}
 
 	public function getActionId()
