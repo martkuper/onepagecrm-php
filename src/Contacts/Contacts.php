@@ -208,6 +208,11 @@ class Contacts extends OnePageCRM {
 		return $response;
 	}
 
+	public function post($url = null, $body = null)
+	{
+		return parent::postData($url, $body);
+	}
+
 	/**
 	 * Implementation of the OnePageCRM class abstract method
 	 *
