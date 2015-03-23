@@ -240,7 +240,7 @@ class Contacts extends OnePageCRM {
 			'emails',
 			'urls',
 			'custom_fields',
-			'partial'
+			'partial',
 		];
 
 		$return = [];
