@@ -486,22 +486,22 @@ class Contacts extends OnePageCRM {
         $this->id = $id;
     }
 
-    public function deleteEmail($index)
+    public function removeEmail($index)
     {
     	unset($this->emails[$index]);
     }
 
-    public function deletePhone($index)
+    public function removePhone($index)
     {
     	unset($this->phones[$index]);
     }
 
-    public function deleteCustomField($index)
+    public function removeCustomField($index)
     {
     	unset($this->custom_fields[$index]);
     }
 
-    public function deleteUrl($index)
+    public function removeUrl($index)
     {
     	unset($this->urls[$index]);
     }
