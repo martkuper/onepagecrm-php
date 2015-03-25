@@ -120,7 +120,7 @@ class Notes extends OnePageCRM {
 			}
 		}		
 	}
-
+ 
 	/**
 	 * TODO: Update documentation
 	 * 

@@ -14,7 +14,7 @@ class ContactsCustomFields {
 
 	/**
 	 * Custom field id
-	 * @var string
+	 * @var string 
 	 */
 	private $id;
 

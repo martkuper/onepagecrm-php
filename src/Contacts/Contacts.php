@@ -241,6 +241,7 @@ class Contacts extends OnePageCRM {
 			'urls',
 			'custom_fields',
 			'partial',
+			'id',
 		];
 
 		$return = [];
