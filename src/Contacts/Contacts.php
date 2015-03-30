@@ -437,7 +437,15 @@ class Contacts extends OnePageCRM {
 
 	public function addAddressList($address_list)
 	{
-		if(is_object($address_list) && (!empty($address_list->getAddress()) || !empty($address_list->getCity()) || !empty($address_list->getState()) || !empty($address_list->getZipCode()) || !empty($address_list->getCountryCode()))){
+		if(is_object($address_list) && 
+			(
+				!empty($address_list->getAddress()) || 
+				!empty($address_list->getCity()) || 
+				!empty($address_list->getState()) || 
+				!empty($address_list->getZipCode()) || 
+				!empty($address_list->getCountryCode())
+			)
+		){
 			// Index 0, because only 1 address is allowed in onepagecrm
 			$this->address_list[0] = $address_list;
 		}
@@ -454,31 +462,31 @@ class Contacts extends OnePageCRM {
 		$this->lead_source_id = $lead_source_id;
 	}
 
-	public function addPhones($phones)
+	public function addPhone($phone)
 	{
-		if(is_object($phones) && !empty($phones->getType()) && !empty($phones->getValue())) {
-			$this->phones[] = $phones;
+		if(is_object($phone) && !empty($phone->getType()) && !empty($phone->getValue())) {
+			$this->phones[$phone->getId()] = $phone;
 		}
 	}
 
-	public function addEmails($emails)
+	public function addEmail($email)
 	{
-		if(is_object($emails) && !empty($emails->getType()) && !empty($emails->getValue())) {
-			$this->emails[] = $emails;
+		if(is_object($email) && !empty($email->getType()) && !empty($email->getValue())) {
+			$this->emails[$email->getId()] = $email;
 		}
 	}
 
-	public function addUrls($urls)
+	public function addUrl($url)
 	{
-		if(is_object($urls) && !empty($urls->getType()) && !empty($urls->getValue())) {
-			$this->urls[] = $urls;
+		if(is_object($url) && !empty($url->getType()) && !empty($url->getValue())) {
+			$this->urls[$url->getId()] = $url;
 		}
 	}
 
-	public function addCustomFields($custom_fields)
+	public function addCustomField($custom_field)
 	{
-		if(is_object($custom_fields) && !empty($custom_fields->getId()) && !empty($custom_fields->getValue())) {
-			$this->custom_fields[] = $custom_fields;
+		if(is_object($custom_field) && !empty($custom_field->getId()) && !empty($custom_field->getValue())) {
+			$this->custom_fields[$custom_field->getId()] = $custom_field;
 		}
 	}
 

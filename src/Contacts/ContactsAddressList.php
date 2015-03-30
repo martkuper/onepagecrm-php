@@ -43,11 +43,19 @@ class ContactsAddressList {
 	private $country_code;
 
 	/**
+	 * Random ID
+	 * @var  string
+	 */
+	private $id;
+
+	/**
 	 * Initialize class variables
 	 * @param array $data The data to initialize the class with
 	 */
 	public function __construct($data = null)
 	{
+		$this->id = uniqid();
+
 		if(!empty($data)) {
 			$this->address      = array_key_exists('address', $data) ? $data['address'] : null;
 			$this->city         = array_key_exists('city', $data) ? $data['city'] : null;
@@ -119,6 +127,11 @@ class ContactsAddressList {
 	public function getCountryCode()
 	{
 		return $this->country_code;
+	}
+
+	public function getId()
+	{
+		return $this->id;
 	}
 
 	public function setAddress($address)

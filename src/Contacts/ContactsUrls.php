@@ -1,5 +1,5 @@
 <?php
-namespace MartKuper\OnePageCRM\Contacts;
+namespace MartKuper\OnePageCRM\Contacts; 
  
 /**
  * ContactsUrls class
@@ -25,11 +25,19 @@ class ContactsUrls {
 	private $value;
 
 	/**
+	 * Random ID
+	 * @var  string
+	 */
+	private $id;
+
+	/**
 	 * Initialize class variables
 	 * @param array $data The data to initialize the class with
 	 */
 	public function __construct($data = null)
 	{
+		$this->id = uniqid();
+
 		if(!empty($data)) {
 			$this->type  = array_key_exists('type', $data) ? $data['type'] : null;
 			$this->value = array_key_exists('value', $data) ? $data['value'] : null;
@@ -66,6 +74,11 @@ class ContactsUrls {
 	public function getValue()
 	{
 		return $this->value;
+	}
+
+	public function getId()
+	{
+		return $this->id;
 	}
 
 	public function setType($type)

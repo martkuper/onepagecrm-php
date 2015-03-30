@@ -28,7 +28,7 @@ class ContactsCustomFields {
 	 * Initialize class variables
 	 * @param array $data The data to initialize the class with
 	 */
-	public function __construct($data = null)
+	public function __construct($data = null) 
 	{
 		if(!empty($data)) {
 			$this->id = (array_key_exists('custom_field', $data) && array_key_exists('id', $data['custom_field'])) ? $data['custom_field']['id'] : null;

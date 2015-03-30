@@ -26,6 +26,12 @@ class ContactsPhones {
 	 */
 	private $value;
 
+	/**
+	 * Random ID
+	 * @var  string
+	 */
+	private $id;
+
 
 	private $supported_types = [
 		'work',
@@ -43,6 +49,8 @@ class ContactsPhones {
 	 */
 	public function __construct($data = null)
 	{
+		$this->id = uniqid();
+
 		if(!empty($data)) {
 			if(!in_array($data['type'], $this->supported_types)){
 				throw new TypeNotSupportedException($data['type'], 'Expected: ' . implode(", ", $this->supported_types));
@@ -97,6 +105,11 @@ class ContactsPhones {
 	public function getValue()
 	{
 		return $this->value;
+	}
+
+	public function getId()
+	{
+		return $this->id;
 	}
 
 	public function setType($type)
