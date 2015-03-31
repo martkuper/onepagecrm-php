@@ -275,10 +275,23 @@ class Contacts extends OnePageCRM {
 	 */
 	public function fromArray($data)
 	{
+		// Array to convert plural OnePageCRM data fields to singular 
+		// in order to call local methods
+		$array = [
+			'address_lists' => 'address_list',
+			'phones' => 'phone',
+			'emails' => 'email',
+			'urls' => 'url',
+			'custom_fields' => 'custom_field',
+		];
+
 		foreach ($data as $key => $value) {
 			if(is_array($data[$key]) && !empty($data[$key])) {
+				if(is_array($array) && array_key_exists($key, $array)) {
+					$key = $array[$key];
+				}
 				$object_str = get_class($this) . Misc::snakeCaseToCamelCase($key, true);
-
+				
 				foreach ($value as $key2 => $value2) {
 					$object = new $object_str($value2);
 					array_push($this->$key, $object);
