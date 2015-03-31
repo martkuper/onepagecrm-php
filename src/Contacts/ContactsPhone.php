@@ -12,7 +12,7 @@ use MartKuper\OnePageCRM\Exceptions\TypeNotSupportedException;
  * @author Mart Kuper
  * @version 0.2.0
  */
-class ContactsPhones {
+class ContactsPhone {
 
 	/**
 	 * The type of phone number

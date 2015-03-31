@@ -10,7 +10,7 @@ namespace MartKuper\OnePageCRM\Contacts;
  * @author Mart Kuper
  * @version 0.2.0
  */
-class ContactsCustomFields {
+class ContactsCustomField {
 
 	/**
 	 * Custom field id

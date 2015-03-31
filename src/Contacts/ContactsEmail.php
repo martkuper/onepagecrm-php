@@ -10,7 +10,7 @@ namespace MartKuper\OnePageCRM\Contacts;
  * @author Mart Kuper
  * @version 0.2.0
  */
-class ContactsEmails {
+class ContactsEmail {
 
 	/**
 	 * The type of email
