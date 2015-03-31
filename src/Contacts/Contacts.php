@@ -295,7 +295,7 @@ class Contacts extends OnePageCRM {
 				
 				foreach ($value as $key2 => $value2) {
 					$object = new $object_str($value2);
-					array_push($this->$key, $object);
+					$this->$key[$object->getId()] = $object;
 				}
 				
 			} else if(isset($data[$key]) && !empty($data[$key])) {
