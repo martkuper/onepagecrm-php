@@ -275,7 +275,7 @@ class Contacts extends OnePageCRM {
 	 */
 	public function fromArray($data)
 	{
-		// Array to convert plural OnePageCRM data fields to singular 
+		 // Array to convert plural OnePageCRM data fields to singular 
         // in order to call local methods
         $array = [
             'phones' => 'phone',
@@ -294,7 +294,11 @@ class Contacts extends OnePageCRM {
 
                 foreach ($value as $key2 => $value2) {
                     $object = new $object_str($value2);
-                    $this->{$key}[$object->getId()] = $object;
+                    if(get_class($object) == "MartKuper\OnePageCRM\Contacts\ContactsAddressList") {
+                        $this->{$key}[0] = $object;
+                    } else {
+                        $this->{$key}[$object->getId()] = $object;
+                    }
                 }
                 
             } else if(isset($data[$key]) && !empty($data[$key])) {
