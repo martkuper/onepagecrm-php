@@ -276,32 +276,31 @@ class Contacts extends OnePageCRM {
 	public function fromArray($data)
 	{
 		// Array to convert plural OnePageCRM data fields to singular 
-		// in order to call local methods
-		$array = [
-			'phones' => 'phone',
-			'emails' => 'email',
-			'urls' => 'url',
-			'custom_fields' => 'custom_field',
-		];
+        // in order to call local methods
+        $array = [
+            'phones' => 'phone',
+            'emails' => 'email',
+            'urls' => 'url',
+            'custom_fields' => 'custom_field',
+        ];
 
-		foreach ($data as $key => $value) {
-			if(is_array($data[$key]) && !empty($data[$key])) {
-				if(is_array($array) && array_key_exists($key, $array)) {
-					$object_str = get_class($this) . Misc::snakeCaseToCamelCase($array[$key], true);
-				} else {
-					$object_str = get_class($this) . Misc::snakeCaseToCamelCase($key, true);
-				}
-				
-				
-				foreach ($value as $key2 => $value2) {
-					$object = new $object_str($value2);
-					$this->$key[$object->getId()] = $object;
-				}
-				
-			} else if(isset($data[$key]) && !empty($data[$key])) {
-				$this->$key = $data[$key];
-			}
-		}		
+        foreach ($data as $key => $value) {
+            if(is_array($data[$key]) && !empty($data[$key])) {
+                if(is_array($array) && array_key_exists($key, $array)) {
+                    $object_str = get_class($this) . Misc::snakeCaseToCamelCase($array[$key], true);
+                } else {
+                    $object_str = get_class($this) . Misc::snakeCaseToCamelCase($key, true);
+                }
+
+                foreach ($value as $key2 => $value2) {
+                    $object = new $object_str($value2);
+                    $this->{$key}[$object->getId()] = $object;
+                }
+                
+            } else if(isset($data[$key]) && !empty($data[$key])) {
+                $this->$key = $data[$key];
+            }
+        }     
 	}	
 
 	public function getType()
