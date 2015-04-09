@@ -71,6 +71,7 @@ class Note extends OnePageCRM {
 
 	public function __construct(Config $config, $data = null)
 	{
+		$this->url = 'notes.' . $this->data_format;
 		parent::__construct($config);
 
 		if($data) {
@@ -139,7 +140,7 @@ class Note extends OnePageCRM {
 	 */
 	public function post($url = null, $body = null) 
 	{
-		return parent::postData($this->sub_url . $this->contact_id . '/notes.' . $this->data_format);
+		return parent::postData($this->sub_url . $this->contact_id . '/' . $this->url);
 	}
 
 	public function getNoteId()

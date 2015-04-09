@@ -162,6 +162,7 @@ class Contact extends OnePageCRM {
 	 */
 	public function __construct(Config $config, $data = null)
 	{
+		$this->url = 'contacts.' . $this->data_format;
 		parent::__construct($config);
 		if(!empty($data)) {
 			$this->fromArray($data);
