@@ -1,16 +1,16 @@
 <?php
-namespace MartKuper\OnePageCRM\Contacts;
+namespace MartKuper\OnePageCRM\Contact;
 
 /**
- * ContactsEmails class
+ * ContactEmail class
  *
  * Contains a OnePageCRM email address
  *
  * @package onepagecrm-php
  * @author Mart Kuper
- * @version 0.2.0
+ * @version 0.5.0
  */
-class ContactsEmail {
+class ContactEmail {
 
 	/**
 	 * The type of email

@@ -1,16 +1,16 @@
 <?php
-namespace MartKuper\OnePageCRM\Contacts; 
+namespace MartKuper\OnePageCRM\Contact; 
  
 /**
- * ContactsUrls class
+ * ContactUrl class
  *
  * Contains a OnePageCRM url
  *
  * @package onepagecrm-php
  * @author Mart Kuper
- * @version 0.2.0
+ * @version 0.5.0
  */
-class ContactsUrl {
+class ContactUrl {
 
 	/**
 	 * The type of url

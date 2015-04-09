@@ -1,6 +1,15 @@
 <?php
 namespace MartKuper\OnePageCRM\Exceptions;
 
+/**
+ * TypeNotSupportedException class
+ *
+ * Exception thrown when the type of an object is not supported by OnePageCRM
+ *
+ * @package onepagecrm-php
+ * @author Mart Kuper
+ * @version 0.2.0
+ */
 class TypeNotSupportedException extends \Exception {
 	 
 	 /**

@@ -1,18 +1,18 @@
 <?php
-namespace MartKuper\OnePageCRM\Contacts;
+namespace MartKuper\OnePageCRM\Contact;
  
 use MartKuper\OnePageCRM\Exceptions\TypeNotSupportedException;
 
 /**
- * ContactsPhones class
+ * ContactPhone class
  *
  * Contains a OnePageCRM phone number
  *
  * @package onepagecrm-php
  * @author Mart Kuper
- * @version 0.2.0
+ * @version 0.5.0
  */
-class ContactsPhone {
+class ContactPhone {
 
 	/**
 	 * The type of phone number

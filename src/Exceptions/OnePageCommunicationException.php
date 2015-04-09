@@ -1,6 +1,15 @@
 <?php
 namespace MartKuper\OnePageCRM\Exceptions;
 
+/**
+ * OnePageCommunicationException class
+ *
+ * Exception thrown when there is an error while communicating with OnePageCRM
+ *
+ * @package onepagecrm-php
+ * @author Mart Kuper
+ * @version 0.2.0
+ */
 class OnePageCommunicationException extends \Exception {
 	 
 	 /**

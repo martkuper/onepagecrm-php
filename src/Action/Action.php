@@ -1,11 +1,20 @@
 <?php
-namespace MartKuper\OnePageCRM\Actions;
+namespace MartKuper\OnePageCRM\Action;
 
 use MartKuper\OnePageCRM\OnePageCRM;
 use MartKuper\OnePageCRM\Config\Config;
 use MartKuper\OnePageCRM\Misc\Misc as Misc;
 
-class Actions extends OnePageCRM {
+/**
+ * Action class
+ *
+ * Provides an interface for posting a new action to OnePageCRM
+ *
+ * @package onepagecrm-php
+ * @author Mart Kuper
+ * @version 0.5.0
+ */
+class Action extends OnePageCRM {
 
 	/**
 	 * OnePageCRM id of the action

@@ -1,6 +1,15 @@
 <?php
 namespace MartKuper\OnePageCRM\Misc;
 
+/**
+ * Misc class
+ *
+ * Contains helper functions
+ *
+ * @package onepagecrm-php
+ * @author Mart Kuper
+ * @version 0.2.0
+ */
 class Misc {
 
 	/**

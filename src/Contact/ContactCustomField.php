@@ -1,16 +1,16 @@
 <?php
-namespace MartKuper\OnePageCRM\Contacts;
+namespace MartKuper\OnePageCRM\Contact;
  
 /**
- * ContactsCustomFields class
+ * ContactCustomField class
  *
  * Contains a OnePageCRM custom field
  *
  * @package onepagecrm-php
  * @author Mart Kuper
- * @version 0.2.0
+ * @version 0.5.0
  */
-class ContactsCustomField {
+class ContactCustomField {
 
 	/**
 	 * Custom field id
@@ -42,11 +42,6 @@ class ContactsCustomField {
 	 */
 	public function toArray()
 	{
-		// $keys = [
-		// 	'id',
-		// 	'value'
-		// ];
-
 		$return = [
 			'custom_field' => [
 				'id' => $this->id
@@ -54,12 +49,6 @@ class ContactsCustomField {
 			'value' => $this->value
 		];
 
-		// foreach ($keys as $key) {
-		// 	if(!empty($this->$key)) {
-		// 		$return[$key] = $this->$key;
-		// 	}
-		// }
-		
 		return $return;		
 	}
 

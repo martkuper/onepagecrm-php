@@ -1,20 +1,20 @@
 <?php
-namespace MartKuper\OnePageCRM\Contacts;
+namespace MartKuper\OnePageCRM\Contact;
 
 use MartKuper\OnePageCRM\OnePageCRM;
 use MartKuper\OnePageCRM\Config\Config;
 use MartKuper\OnePageCRM\Misc\Misc as Misc;
  
 /**
- * Contacts class
+ * Contact class
  *
  * Provides an interface for posting a new contact to OnePageCRM
  *
  * @package onepagecrm-php
  * @author Mart Kuper
- * @version 0.2.0
+ * @version 0.5.0
  */
-class Contacts extends OnePageCRM {
+class Contact extends OnePageCRM {
 
 	/**
 	 * Contact's type
@@ -294,7 +294,7 @@ class Contacts extends OnePageCRM {
 
                 foreach ($value as $key2 => $value2) {
                     $object = new $object_str($value2);
-                    if(get_class($object) == "MartKuper\OnePageCRM\Contacts\ContactsAddressList") {
+                    if(get_class($object) == "MartKuper\OnePageCRM\Contact\ContactAddressList") {
                         $this->{$key}[0] = $object;
                     } else {
                         $this->{$key}[$object->getId()] = $object;

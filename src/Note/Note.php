@@ -1,11 +1,20 @@
 <?php
-namespace MartKuper\OnePageCRM\Notes;
+namespace MartKuper\OnePageCRM\Note;
 
 use MartKuper\OnePageCRM\OnePageCRM;
 use MartKuper\OnePageCRM\Config\Config;
 use MartKuper\OnePageCRM\Misc\Misc as Misc;
 
-class Notes extends OnePageCRM {
+/**
+ * Note class
+ *
+ * Provides an interface for posting a new note to OnePageCRM
+ *
+ * @package onepagecrm-php
+ * @author Mart Kuper
+ * @version 0.5.0
+ */
+class Note extends OnePageCRM {
 
 	/**
 	 * ID of the note
