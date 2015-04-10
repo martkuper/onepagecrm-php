@@ -19,7 +19,7 @@ abstract class OnePageCRM
 	 * Sub URL to post to
 	 * @var string
 	 */
-	private $url;
+	protected $url;
 
 	/**
  	* Guzzle client object
