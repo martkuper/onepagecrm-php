@@ -1,7 +1,9 @@
-<?php>
+<?php
 namespace MartKuper\OnePageCRM\Deal;
 
+use MartKuper\OnePageCRM\OnePageCRM;
 use MartKuper\OnePageCRM\Config\Config;
+use MartKuper\OnePageCRM\Misc\Misc as Misc;
 
 /**
  * Base class that handles OnePageCRM connection
@@ -240,4 +242,237 @@ class Deal extends OnePageCRM {
 		//$this->fromArray($response->json()['data']['contact']);	
 		return $response;
 	}
+
+
+
+    /**
+     * Gets the id of the deal (read only).
+     *
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Gets the id of the contact this deal belongs to.
+     *
+     * @return string
+     */
+    public function getContactId()
+    {
+        return $this->contact_id;
+    }
+
+    /**
+     * Sets the id of the contact this deal belongs to.
+     *
+     * @param string $contact_id the contact id
+     */
+    private function setContactId($contact_id)
+    {
+        $this->contact_id = $contact_id;
+    }
+
+    /**
+     * Gets the JSON object containing contact_name and company relating to deal (read only).
+     *
+     * @return JSON object
+     */
+    public function getContactInfo()
+    {
+        return $this->contact_info;
+    }
+
+    /**
+     * Gets the Date related to the deal’s creation.
+     *
+     * @return date
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Sets the Date related to the deal’s creation.
+     *
+     * @param date $date the date
+     */
+    private function setDate($date)
+    }
+
+    /**
+     * Gets the Name of the deal (required).
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Sets the Name of the deal (required).
+     *
+     * @param string $name the name
+     */
+    private function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Gets the The text in the body of the deal.
+     *
+     * @return string
+     */
+    public function getText()
+    {
+        return $this->text;
+    }
+
+    /**
+     * Sets the The text in the body of the deal.
+     *
+     * @param string $text the text
+     */
+    private function setText($text)
+    {
+        $this->text = $text;
+    }
+
+    /**
+     * Gets the First name and first letter of last name of the author of the deal (read only).
+     *
+     * @return string
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Gets the Total amount of money to be paid per month.
+     *
+     * @return float
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * Sets the Total amount of money to be paid per month.
+     *
+     * @param float $amount the amount
+     */
+    private function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
+
+    /**
+     * Gets the Number of months the above amount will be paid for.
+     *
+     * @return int
+     */
+    public function getMonths()
+    {
+        return $this->months;
+    }
+
+    /**
+     * Sets the Number of months the above amount will be paid for.
+     *
+     * @param int $months the months
+     */
+    private function setMonths($months)
+    {
+        $this->months = $months;
+    }
+
+    /**
+     * Gets the Product of amount and months (read only).
+     *
+     * @return float
+     */
+    public function getTotalAmount()
+    {
+        return $this->total_amount;
+    }
+
+    /**
+     * Gets the What stage this deal is at
+     * This can be converted to a label using the deal stages list in the settings resource.
+     *
+     * @return int
+     */
+    public function getStage()
+    {
+        return $this->stage;
+    }
+
+    /**
+     * Sets the What stage this deal is at
+     * This can be converted to a label using the deal stages list in the settings resource.
+     *
+     * @param int $stage the stage
+     */
+    private function setStage($stage)
+    {
+        $this->stage = $stage;
+    }
+
+    /**
+     * Gets the Status of the deal this is one of won, lost or pending.
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Sets the Status of the deal this is one of won, lost or pending.
+     *
+     * @param string $status the status
+     */
+    private function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
+     * Gets the Date when the deal is expected to be closed.
+     *
+     * @return date
+     */
+    public function getExpectedCloseDate()
+    {
+        return $this->expected_close_date;
+    }
+
+    /**
+     * Sets the Date when the deal is expected to be closed.
+     *
+     * @param date $expected_close_date the expected close date
+     */
+    private function setExpectedCloseDate($expected_close_date)
+    {
+        $this->expected_close_date = $expected_close_date;
+    }
+
+    /**
+     * Gets the Date that the deal was closed
+     * This is set automatically when a deal is marked as won or lost (read only).
+     *
+     * @return date
+     */
+    public function getClosedDate()
+    {
+        return $this->closed_date;
+    }  
 }
