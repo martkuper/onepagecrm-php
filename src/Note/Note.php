@@ -126,7 +126,9 @@ class Note extends OnePageCRM {
 		foreach ($data as $key => $value) {
 			if(array_key_exists($key, $data) && !empty($data[$key])) {
 				$setter = 'set' . Misc::snakeCaseToCamelCase($key, true);
-				$this->$setter($data[$key]);
+				if(method_exists($this, $setter)) {
+					$this->$setter($data[$key]);
+				}
 			}
 		}		
 	}

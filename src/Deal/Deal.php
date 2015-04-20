@@ -27,6 +27,12 @@ class Deal extends OnePageCRM {
 	private $contact_id;
 
 	/**
+	 * id of the owner of the deal
+	 * @var string
+	 */
+	private $owner_id;
+
+	/**
 	 * JSON object containing contact_name and company relating to deal (read only)
 	 * @var JSON object
 	 */
@@ -207,7 +213,9 @@ class Deal extends OnePageCRM {
 		foreach ($data as $key => $value) {
 			if(array_key_exists($key, $data) && !empty($data[$key])) {
 				$setter = 'set' . Misc::snakeCaseToCamelCase($key, true);
-				$this->$setter($data[$key]);
+				if(method_exists($this, $setter)) {
+					$this->$setter($data[$key]);
+				}
 			}
 		}		
 	}
@@ -246,13 +254,23 @@ class Deal extends OnePageCRM {
 
 
     /**
-     * Gets the id of the deal (read only).
+     * Gets the id of the deal.
      *
      * @return string
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Sets the id of the deal.
+     *
+     * @return string
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -276,13 +294,41 @@ class Deal extends OnePageCRM {
     }
 
     /**
-     * Gets the JSON object containing contact_name and company relating to deal (read only).
+     * Gets the id of the owner of the deal
+     * @return string
+     */
+    public function getOwnerId()
+    {
+    	return $this->owner_id;
+    }
+
+    /**
+     * Sets the id of the owner of the deal
+     * @param string $owner_id the owner id
+     */
+    public function setOwnerId($owner_id)
+    {
+    	$this->owner_id = $owner_id;
+    }
+
+    /**
+     * Gets the JSON object containing contact_name and company relating to deal.
      *
      * @return JSON object
      */
     public function getContactInfo()
     {
         return $this->contact_info;
+    }
+
+    /**
+     * Sets the JSON object containing contact_name and company relating to deal.
+     *
+     * @return JSON object
+     */
+    public function setContactInfo($contact_info)
+    {
+        $this->contact_info = $contact_info;
     }
 
     /**
@@ -301,6 +347,8 @@ class Deal extends OnePageCRM {
      * @param date $date the date
      */
     private function setDate($date)
+    {
+    	$this->date = $date;
     }
 
     /**
@@ -318,7 +366,7 @@ class Deal extends OnePageCRM {
      *
      * @param string $name the name
      */
-    private function setName($name)
+    public function setName($name)
     {
         $this->name = $name;
     }
@@ -338,19 +386,29 @@ class Deal extends OnePageCRM {
      *
      * @param string $text the text
      */
-    private function setText($text)
+    public function setText($text)
     {
         $this->text = $text;
     }
 
     /**
-     * Gets the First name and first letter of last name of the author of the deal (read only).
+     * Gets the First name and first letter of last name of the author of the deal.
      *
      * @return string
      */
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Sets the First name and first letter of last name of the author of the deal.
+     *
+     * @return string
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
     }
 
     /**
@@ -368,7 +426,7 @@ class Deal extends OnePageCRM {
      *
      * @param float $amount the amount
      */
-    private function setAmount($amount)
+    public function setAmount($amount)
     {
         $this->amount = $amount;
     }
@@ -388,19 +446,29 @@ class Deal extends OnePageCRM {
      *
      * @param int $months the months
      */
-    private function setMonths($months)
+    public function setMonths($months)
     {
         $this->months = $months;
     }
 
     /**
-     * Gets the Product of amount and months (read only).
+     * Gets the Product of amount and months.
      *
      * @return float
      */
     public function getTotalAmount()
     {
         return $this->total_amount;
+    }
+
+    /**
+     * Sets the Product of amount and months.
+     *
+     * @return float
+     */
+    public function setTotalAmount($total_amount)
+    {
+        $this->total_amount = $total_amount;
     }
 
     /**
@@ -420,7 +488,7 @@ class Deal extends OnePageCRM {
      *
      * @param int $stage the stage
      */
-    private function setStage($stage)
+    public function setStage($stage)
     {
         $this->stage = $stage;
     }
@@ -440,7 +508,7 @@ class Deal extends OnePageCRM {
      *
      * @param string $status the status
      */
-    private function setStatus($status)
+    public function setStatus($status)
     {
         $this->status = $status;
     }
@@ -460,19 +528,30 @@ class Deal extends OnePageCRM {
      *
      * @param date $expected_close_date the expected close date
      */
-    private function setExpectedCloseDate($expected_close_date)
+    public function setExpectedCloseDate($expected_close_date)
     {
         $this->expected_close_date = $expected_close_date;
     }
 
     /**
      * Gets the Date that the deal was closed
-     * This is set automatically when a deal is marked as won or lost (read only).
+     * This is set automatically when a deal is marked as won or lost.
      *
      * @return date
      */
     public function getClosedDate()
     {
         return $this->closed_date;
+    }  
+
+    /**
+     * Sets the Date that the deal was closed
+     * This is set automatically when a deal is marked as won or lost.
+     *
+     * @return date
+     */
+    public function setClosedDate($closed_date)
+    {
+        $this->closed_date = $closed_date;
     }  
 }
