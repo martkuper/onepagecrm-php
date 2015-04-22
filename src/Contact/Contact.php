@@ -459,7 +459,7 @@ class Contact extends OnePageCRM {
 		$this->status = $status;
 	}
 
-	public function setTags($tags)
+	public function addTag($tags)
 	{
 		$this->tags = $tags;
 	}
