@@ -306,8 +306,6 @@ class Contact extends OnePageCRM {
             'tags' => 'tag',
         ];
 
-        dump($data);
-
         foreach ($data as $key => $value) {
             if(is_array($data[$key]) && !empty($data[$key])) {
                 if(is_array($array) && array_key_exists($key, $array)) {
