@@ -12,7 +12,7 @@ use MartKuper\OnePageCRM\Misc\Misc as Misc;
  *
  * @package onepagecrm-php
  * @author Mart Kuper
- * @version 0.5.0
+ * @version 0.5.4
  */
 class Contact extends OnePageCRM {
 
@@ -214,6 +214,26 @@ class Contact extends OnePageCRM {
 		return parent::postData($url, $body);
 	}
 
+    /**
+     * @param  string   $tag_name               The name of the tag to add
+     * @return Response                         The OnePageCRM Response
+     * @throws OnePageCommunicationException    Thrown exception if communication fails
+     */
+    public function assignTag($tag_name)
+    {
+        return parent::put($this->sub_url . $this->id . '/assign_tag/' . $tag_name . '.' . $this->data_format, []);
+    }
+
+    /**
+     * @param  string   $tag_name               The name of the tag to remove
+     * @return Response                         The OnePageCRM Response
+     * @throws OnePageCommunicationException    Thrown exception if communication fails
+     */
+    public function unassignTag($tag_name)
+    {
+        return parent::put($this->sub_url . $this->id . '/unassign_tag/' . $tag_name . '.' . $this->data_format, []);
+    }
+
 	/**
 	 * Implementation of the OnePageCRM class abstract method
 	 *
@@ -283,7 +303,10 @@ class Contact extends OnePageCRM {
             'emails' => 'email',
             'urls' => 'url',
             'custom_fields' => 'custom_field',
+            'tags' => 'tag',
         ];
+
+        dump($data);
 
         foreach ($data as $key => $value) {
             if(is_array($data[$key]) && !empty($data[$key])) {
